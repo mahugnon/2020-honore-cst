@@ -103,16 +103,48 @@ La société CIM a effectué une analyse de risque pour son évolution et croiss
 Ces problèmes sont récurrents chez les organises gérant des systèmes d'information \cite{Deme02a}.
 
 Ce travail de doctorat consiste de proposer des modèles et des mécanismes permettant d'assurer
-une régénération des systèmes d'information. Les expériences et validation des prototypes se feront dans le contexte de l'application du système d'information écrit en PowerBuilder de la société CIM
+une ré-ingénierie des systèmes d'information. Les expériences et validation des prototypes se feront dans le contexte de l'application du système d'information écrit en PowerBuilder de la société CIM
 \section{Etat de l'art}
 \label{sec:stateOfTheArt}
 % 1 pages
+
+Cette section présent Izy Protect, ainsi que les mécanismes de ré-ingénierie des systèmes d'information patrimoniaux.
 \subsection{Présentation de Izy Protect}
+\label{sec:izyProtect}
+Izy Protect est un système de plus de 3 MLOC écris en Powerbuilder et maintenu depuis plus de 20 ans par les développeurs la CIM. Le code source est organisé par bibliothèques Powerbuilder.
+Vu la complexité actuelle du système, les développeurs ont de plus en plus du mal a le maintenir. Les ancienne versions du système sont stocker sur un disque dure. Pour des raison interne à la CIM, les versions de Izy protect ont été perdu jusqu'en 2010.  De plus les développeurs risquent a tout moment d'écraser leurs travaille. Les développeurs modifient Izy protect en réponse a qui décrit le travaille a faire. 
+
+Dans l'entreprise, les tickets sont stockés dans la base de données des tickets depuis 2000.
+Un ticket représente un travail unitaire.
+La base de données des tickets pilote l'ensemble du processus d'évolution du logiciel : attribution du travail aux développeurs, gestion du flux de travail pour répondre à une demande du client, informations de facturation sur chaque tâche.
+Il existe des tickets pour la correction de défauts, la rédaction de documentation, l'ajout de nouvelles fonctionnalités, etc. 
+
+Un ticket comporte entre autres les caractéristiques suivantes :
+
+\begin{itemize}
+\item  la date de création
+\item la date de clôture
+\item l'estimation du temps nécessaire au développeur pour travailler sur le ticket
+\item temps passé par un développeur
+  \begin{itemize}
+  \item le temps d'analyser
+  \item le temps de mettre en œuvre une solution
+  \item le temps de test
+  \end{itemize}
+  \item le(s) bibliothèque(s) impactées
+\end{itemize}
 
 \subsection{Analyse de l'évolution de l'état d'un logiciel patrimonial}
 \label{sec:etatLogiciel}
 
-\subsection{Découpage des grosses classe}
+Les systèmes  patrimoniaux sont des systèmes en constante changements: production de nouvelles fonctionnalités.
+ La deuxième loi de Lehman \cite{Lehm96a} stipule qu'à mesure que les logiciels évoluent, la complexité croissante et l'augmentation des défauts entraîneront une baisse de la satisfaction des parties prenantes, à moins que les équipes de projet n'entreprennent le travail nécessaire pour maintenir la qualité.
+ Dans ce sens nombreuses travaux de la littérature propose des techniques, pour suivre l'évolution de l'état de  ces systèmes.
+\citep{Zhan10a} utilise les données des occurrences bugs et le temps pour modéliser l'évolution d'un système logiciel avec  c-charts.
+
+
+ 
+\subsection{Ré-ingénierie}
 \label{sec:decouperGrosseClasse}
 
 \section{Avancées actuelles}
@@ -159,9 +191,9 @@ Cette section présente la liste des  soumissions liée à cette thèse.
 \footnotesize{
   %\bibliographystyle{alpha}
   % natbib 
-  %\bibliographystyle{myplainnat}
-  \bibliographystyle{mySmallPlainnat}
-  \bibliography{others,rmod,nextPubli}
+  \bibliographystyle{myplainnat}
+ % \bibliographystyle{mySmallPlainnat}
+  \bibliography{rmod,others}
 }
 
 \end{document}
