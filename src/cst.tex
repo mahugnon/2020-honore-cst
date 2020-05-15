@@ -119,7 +119,7 @@ Un ticket représente un travail unitaire.
 La base de données des tickets pilote l'ensemble du processus d'évolution du logiciel : attribution du travail aux développeurs, gestion du flux de travail pour répondre à une demande du client, informations de facturation sur chaque tâche.
 Il existe des tickets pour la correction de défauts, la rédaction de documentation, l'ajout de nouvelles fonctionnalités, etc. 
 
-Un ticket comporte entre autres les caractéristiques suivantes :
+Un ticket comporte entre autres les caractéristiques suivantes:
 
 \begin{itemize}
 \item  la date de création
@@ -140,8 +140,16 @@ Un ticket comporte entre autres les caractéristiques suivantes :
 Les systèmes  patrimoniaux sont des systèmes en constante changements: production de nouvelles fonctionnalités.
  La deuxième loi de Lehman \cite{Lehm96a} stipule qu'à mesure que les logiciels évoluent, la complexité croissante et l'augmentation des défauts entraîneront une baisse de la satisfaction des parties prenantes, à moins que les équipes de projet n'entreprennent le travail nécessaire pour maintenir la qualité.
  Dans ce sens nombreuses travaux de la littérature propose des techniques, pour suivre l'évolution de l'état de  ces systèmes.
+ 
 \citep{Zhan10a} utilise les données des occurrences bugs et le temps pour modéliser l'évolution d'un système logiciel avec  c-charts.
 
+\citep{lenar17} propose un système de recommandation  d'action au développeur pour un nouveau bug. Le system se  base sur l'historique des bugs, le code source ainsi que qu'un algorithme de prédiction.  Pour que ça marche, le code source doit être gérer dans un système de contrôle de version. Ce qui n'est pas le cas avec Izy Protect.
+
+\citep{port17} utilise les modèles  et l'analyse de l'historique des bugs pour évaluer la qualité d'un système et prédire l'effort nécessaire pour améliorer le système. Les métriques mesurés sont: le taux de bugs sur une période de temps, le ratio entre le taux de d'augmentation de la taille du système et le taux de bugs, le temps moyen entre les bugs, l'effort pour résoudre les bugs, estimation des risque de future bugs, etc. Certain de ces métriques comme: le taux de bugs par période de temps, l'effort pour résoudre les bugs  sont intéressantes dans le cadre de Izy Protect. Les autres ne se conforme pas au contexte car:
+\begin{itemize}
+\item  les tickets de Izy protect ne sont directement liés au code de façon standard. Chaque développeur note le numéro de tickets a sa façon dans le code. 
+\item les algorithmes de prédiction, ne tiennent pas compte des changements qui peuvent être imprévisible dans le code. De plus Izy Protect est système commercial multi-utilisateurs, et donc chaque utilisateur a des fonctionnalités ou des changements qui lui est spécifique. 
+\end{itemize}
 
  
 \subsection{Ré-ingénierie}
