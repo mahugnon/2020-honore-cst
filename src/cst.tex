@@ -144,16 +144,22 @@ Les systèmes  patrimoniaux sont des systèmes en constante changements: product
 \citep{Zhan10a} utilise les données des occurrences bugs et le temps pour modéliser l'évolution d'un système logiciel avec  c-charts.
 
 \citep{lenar17} propose un système de recommandation  d'action au développeur pour un nouveau bug. Le system se  base sur l'historique des bugs, le code source ainsi que qu'un algorithme de prédiction.  Pour que ça marche, le code source doit être gérer dans un système de contrôle de version. Ce qui n'est pas le cas avec Izy Protect.
+ 
+\citep{port17} utilise les modèles  et l'analyse de l'historique des défauts pour évaluer la qualité d'un système et prédire l'effort nécessaire pour améliorer le système. Les métriques mesurés sont: le taux de bugs sur une période de temps, le ratio entre le taux de d'augmentation de la taille du système et le taux de bugs, le temps moyen entre la découverte des bugs, l'effort pour résoudre les bugs, estimation des risque de future bugs, etc. Certain de ces métriques comme: le taux de bugs par période de temps, l'effort pour résoudre les bugs  sont intéressantes dans le cadre de Izy Protect. Les autres ne se conforme pas au contexte car
+  les tickets de Izy protect ne sont directement liés au code de façon standard. Chaque développeur note le numéro de tickets a sa façon dans le code. 
+ 
 
-\citep{port17} utilise les modèles  et l'analyse de l'historique des bugs pour évaluer la qualité d'un système et prédire l'effort nécessaire pour améliorer le système. Les métriques mesurés sont: le taux de bugs sur une période de temps, le ratio entre le taux de d'augmentation de la taille du système et le taux de bugs, le temps moyen entre les bugs, l'effort pour résoudre les bugs, estimation des risque de future bugs, etc. Certain de ces métriques comme: le taux de bugs par période de temps, l'effort pour résoudre les bugs  sont intéressantes dans le cadre de Izy Protect. Les autres ne se conforme pas au contexte car:
-\begin{itemize}
-\item  les tickets de Izy protect ne sont directement liés au code de façon standard. Chaque développeur note le numéro de tickets a sa façon dans le code. 
-\item les algorithmes de prédiction, ne tiennent pas compte des changements qui peuvent être imprévisible dans le code. De plus Izy Protect est système commercial multi-utilisateurs, et donc chaque utilisateur a des fonctionnalités ou des changements qui lui est spécifique. 
-\end{itemize}
+\citep{kim07,Bibi06} propose  un modèle de prédiction des défauts avec des algorithmes d'apprentissage en utilisant l'historique des bugs de système. 
+Les algorithmes de prédiction de bugs ne sont pas toujours consistant \cite{bang19}. De plus, ils ne tiennent pas compte des changements qui peuvent être imprévisible dans le code. De plus Izy Protect est système commercial multi-utilisateurs, et donc chaque utilisateur a des fonctionnalités ou des changements qui lui est spécifique. 
+
+\citep{naga05} Utilise l'historique le nombre de lignes de code changer pour un bug fix ou une nouvelle fonctionnalité pour prédire la densité de bug  le code. Pour que ceci soit réalisable, il faut que le code soit préalablement versionné dans un system de contrôle de version.
+
+\citep{Raja09} à étudier différents algorithme de modélisation des défauts d'un système a partir des donnée des défauts relevé sur huit projet open source. Il en ressort que la moyenne glissée modélise mieux les défauts des systèmes.
 
  
 \subsection{Ré-ingénierie}
-\label{sec:decouperGrosseClasse}
+\label{sec:reingenierie}
+
 
 \section{Avancées actuelles}
 % 3 pages
