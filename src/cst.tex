@@ -92,8 +92,7 @@ CIM est certifiée Microsoft GOLD Partner.
 Elle est l'éditeur des progiciels de la gamme Izy Links et assure l'intégration de l'ensemble des briques de cette gamme ainsi que des briques partenaires nécessaires à la bonne réussite du projet. Cette solution est développée en PowerBuilder sur base de données DB2. L'équipe de développement
 vient d'upgrader en PowerBuilder 2017 (été 2018) et est en cours de passage sur DB2 v11 (avec l'aide d'un DBA IBM – prestation 2018).
 
-Le système de gestion est centré sur le back office Izy Protect, autour duquel gravite
-l’ensemble des briques complémentaires répondant à l'assemble des besoins, et pouvant
+Le système de gestion est centré sur le back office Izy Protect, autour duquel gravite l'ensemble des briques complémentaires répondant à l'assemble des besoins, et pouvant
 être activées ou non. 
 La société CIM a effectué une analyse de risque pour son évolution et croissance en 2017 d'où il ressort que Izy Protect souffre des problèmes 
 (1) vieux langage,
@@ -113,8 +112,10 @@ Cette section présent Izy Protect, ainsi que les mécanismes de ré-ingénierie
 \label{sec:izyProtect}
 Izy Protect est un système de plus de 3 MLOC écris en Powerbuilder et maintenu depuis plus de 20 ans par les développeurs la CIM. Le code source est organisé par bibliothèques Powerbuilder.
 Vu la complexité actuelle du système, les développeurs ont de plus en plus du mal a le maintenir. Les ancienne versions du système sont stocker sur un disque dure. Pour des raison interne à la CIM, les versions de Izy protect ont été perdu jusqu'en 2010.  De plus les développeurs risquent a tout moment d'écraser leurs travaille. Les développeurs modifient Izy protect en réponse a qui décrit le travaille a faire. 
+De plus, il n'y a pas de tests unitaire automatisés.
+Ce qui augment la craint des développeurs au petit changement.
 
-Dans l'entreprise, les tickets sont stockés dans la base de données des tickets depuis 2000.
+Dans l'entreprise, les tickets sont stockés dans la base de données des tickets ou fiches navettes depuis 1998. 
 Un ticket représente un travail unitaire.
 La base de données des tickets pilote l'ensemble du processus d'évolution du logiciel : attribution du travail aux développeurs, gestion du flux de travail pour répondre à une demande du client, informations de facturation sur chaque tâche.
 Il existe des tickets pour la correction de défauts, la rédaction de documentation, l'ajout de nouvelles fonctionnalités, etc. 
@@ -145,16 +146,18 @@ Les systèmes  patrimoniaux sont des systèmes en constante changements: product
 
 \citep{lenar17} propose un système de recommandation  d'action au développeur pour un nouveau bug. Le system se  base sur l'historique des bugs, le code source ainsi que qu'un algorithme de prédiction.  Pour que ça marche, le code source doit être gérer dans un système de contrôle de version. Ce qui n'est pas le cas avec Izy Protect.
  
-\citep{port17} utilise les modèles  et l'analyse de l'historique des défauts pour évaluer la qualité d'un système et prédire l'effort nécessaire pour améliorer le système. Les métriques mesurés sont: le taux de bugs sur une période de temps, le ratio entre le taux de d'augmentation de la taille du système et le taux de bugs, le temps moyen entre la découverte des bugs, l'effort pour résoudre les bugs, estimation des risque de future bugs, etc. Certain de ces métriques comme: le taux de bugs par période de temps, l'effort pour résoudre les bugs  sont intéressantes dans le cadre de Izy Protect. Les autres ne se conforme pas au contexte car
-  les tickets de Izy protect ne sont directement liés au code de façon standard. Chaque développeur note le numéro de tickets a sa façon dans le code. 
+\citep{port17} utilise les modèles  et l'analyse de l'historique des défauts pour évaluer la qualité d'un système et prédire l'effort nécessaire pour améliorer le système. Les métriques mesurés sont: le taux de bugs sur une période de temps, le ratio entre le taux de d'augmentation de la taille du système et le taux de bugs, le temps moyen entre la découverte des bugs, l'effort pour résoudre les bugs, estimation des risque de future bugs, etc.
+ Certain de ces métriques comme: le taux de bugs par période de temps, l'effort pour résoudre les bugs  sont intéressantes dans le cadre de Izy Protect. 
+Les autres ne se conforme pas au contexte car les tickets de Izy protect ne sont directement liés au code de façon standard.
+Chaque développeur note le numéro de tickets a sa façon dans le code. 
  
 
-\citep{kim07,Bibi06} propose  un modèle de prédiction des défauts avec des algorithmes d'apprentissage en utilisant l'historique des bugs de système. 
+\cite{kim07,Bibi06} propose  un modèle de prédiction des défauts avec des algorithmes d'apprentissage en utilisant l'historique des bugs de système. 
 Les algorithmes de prédiction de bugs ne sont pas toujours consistant \cite{bang19}. De plus, ils ne tiennent pas compte des changements qui peuvent être imprévisible dans le code. De plus Izy Protect est système commercial multi-utilisateurs, et donc chaque utilisateur a des fonctionnalités ou des changements qui lui est spécifique. 
 
-\citep{naga05} Utilise l'historique le nombre de lignes de code changer pour un bug fix ou une nouvelle fonctionnalité pour prédire la densité de bug  le code. Pour que ceci soit réalisable, il faut que le code soit préalablement versionné dans un system de contrôle de version.
+\cite{naga05} Utilise l'historique le nombre de lignes de code changer pour un bug fix ou une nouvelle fonctionnalité pour prédire la densité de bug  le code. Pour que ceci soit réalisable, il faut que le code soit préalablement versionné dans un system de contrôle de version.
 
-\citep{Raja09} à étudier différents algorithme de modélisation des défauts d'un système a partir des donnée des défauts relevé sur huit projet open source. Il en ressort que la moyenne glissée modélise mieux les défauts des systèmes.
+\cite{Raja09} à étudier différents algorithme de modélisation des défauts d'un système a partir des donnée des défauts relevé sur huit projet open source. Il en ressort que la moyenne glissée modélise mieux les défauts des systèmes.
 
  
 \subsection{Ré-ingénierie}
@@ -163,12 +166,26 @@ Les algorithmes de prédiction de bugs ne sont pas toujours consistant \cite{ban
 
 \section{Avancées actuelles}
 % 3 pages
+\subsection{Route vers le DevOps}
+\label{sec: devOps}
+Les problèmes préalablement cités sur Izy Protect à savoir: code non versionné, ce qui engendre les pertes et écrasement de code, puis l'absence total de test unitaire automatisé, m'ont amenés à:
+\begin{itemize}
+\item Mettre en place un serveur subversion (SVN) pour versionné les code. 
+Le choix de SVN est guidé par le fait  de la simplicité de SVN  pour la compréhension.  De plus le module de contrôle de version que offre Powerbuilder n'est pas trop stable. Par exemple parfois le module considère un code déjà versionné comme un code non versionné. De plus le module de contrôle de version que offre Powerbuilder ne support pas bien les opérations avancés comme la comparaison de deux versions du code ou bien la résolution de conflit. En complément de Powerbuilder,  j'ai amener les développeurs de la CIM à utiliser TortoiseSVN \cite{tort}.
+\item Reconstruire l'histoire du code source de Izy Protect depuis 2012 afin de procéder à des analyse de l'évolution du système a partir des changements entre les version. Les versions de Izy Protect sont nombreuses. J'en suis actuellement a fin des versions produites en 2014.
+\item Tester  des outils de tests unitaire sur Powerbuilder. PBUnit parait être la librairy qui permet de tester  les fonctionnalités des applications Powerbuilder au niveau du code source. 
+Je entrain de le mettre en place.
+ L'entreprise adopte déjà Tosca . 
+\end{itemize}
 
 \subsection{Analyse des fiches navettes}
 \label{sec:analyseDesFichesNavettes}
-
-\subsection{Route vers le DevOps}
-\label{sec: devOps}
+Afin d'évaluer l'état de Izy Protect, j'ai utilisé la base de donnée des fiche navettes. 
+Après nettoyage, seul les tickets à partir de 2004 sont utilisable. 
+Les données sont non-stationnaires. 
+En me basant sur les résultats de \cite{Raja09}, j'ai utilisé la moyenne glissant avant un pas de 2 mois pour modéliser l'état du système.
+J'ai principalement mesuré les métriques suivantes: l'evolution du temps pour ferme les tickets, l'evolution du temps néccéssaire au developpeur, l'evolution du temps des tests manuel du developpeur,
+l'évolution de l'estimation du temps de developpement par le manager
 
 \subsection{Outil d'aide a la ré-ingénierie logiciel}
 
@@ -205,9 +222,8 @@ Cette section présente la liste des  soumissions liée à cette thèse.
 \footnotesize{
   %\bibliographystyle{alpha}
   % natbib 
-  \bibliographystyle{myplainnat}
- % \bibliographystyle{mySmallPlainnat}
-  \bibliography{rmod,others}
+ \bibliographystyle{plainnat}
+\bibliography{rmod,others}
 }
 
 \end{document}
