@@ -110,10 +110,14 @@ une ré-ingénierie des systèmes d'information. Les expériences et validation 
 Cette section présent Izy Protect, ainsi que les mécanismes de ré-ingénierie des systèmes d'information patrimoniaux.
 \subsection{Présentation de Izy Protect}
 \label{sec:izyProtect}
-Izy Protect est un système de plus de 3 MLOC écris en Powerbuilder et maintenu depuis plus de 20 ans par les développeurs la CIM. Le code source est organisé par bibliothèques Powerbuilder.
-Vu la complexité actuelle du système, les développeurs ont de plus en plus du mal a le maintenir. Les ancienne versions du système sont stocker sur un disque dure. Pour des raison interne à la CIM, les versions de Izy protect ont été perdu jusqu'en 2010.  De plus les développeurs risquent a tout moment d'écraser leurs travaille. Les développeurs modifient Izy protect en réponse a qui décrit le travaille a faire. 
+Izy Protect est un système de plus de 3 MLOC écris en Powerbuilder et maintenu depuis plus de 20 ans par les développeurs la CIM. Le code source est organisé par bibliothèques Powerbuilder. 
+Izy Protect compte 117 bibliothèques. La plus large  à une taille supérieur à 300 KLOC.
+Durant toutes ces années, il y a eu beaucoup de changement dans l'equipe de developpeurs.  
+Vu la complexité actuelle du système, les développeurs ont de plus en plus du mal a le maintenir.
+ Les ancienne versions du système sont stocker sur un disque dure. Pour des raison interne à la CIM, les versions de Izy protect ont été perdu jusqu'en 2010.  De plus les développeurs risquent a tout moment d'écraser leurs travaille. Les développeurs modifient Izy protect en réponse a qui décrit le travaille a faire. 
 De plus, il n'y a pas de tests unitaire automatisés.
-Ce qui augment la craint des développeurs au petit changement.
+Ce qui augment la craint des développeurs au petit changement. 
+Quand un système à plusieurs décennie de vie, la retro-ingénierie est une activités centrale pour le maintenir \cite{Deme02a}.
 
 Dans l'entreprise, les tickets sont stockés dans la base de données des tickets ou fiches navettes depuis 1998. 
 Un ticket représente un travail unitaire.
@@ -142,7 +146,7 @@ Les systèmes  patrimoniaux sont des systèmes en constante changements: product
  La deuxième loi de Lehman \cite{Lehm96a} stipule qu'à mesure que les logiciels évoluent, la complexité croissante et l'augmentation des défauts entraîneront une baisse de la satisfaction des parties prenantes, à moins que les équipes de projet n'entreprennent le travail nécessaire pour maintenir la qualité.
  Dans ce sens nombreuses travaux de la littérature propose des techniques, pour suivre l'évolution de l'état de  ces systèmes.
  
-\citep{Zhan10a} utilise les données des occurrences bugs et le temps pour modéliser l'évolution d'un système logiciel avec  c-charts.
+\citep{Zhan10b} utilise les données des occurrences bugs et le temps pour modéliser l'évolution d'un système logiciel avec  c\-charts.
 
 \citep{lenar17} propose un système de recommandation  d'action au développeur pour un nouveau bug. Le system se  base sur l'historique des bugs, le code source ainsi que qu'un algorithme de prédiction.  Pour que ça marche, le code source doit être gérer dans un système de contrôle de version. Ce qui n'est pas le cas avec Izy Protect.
  
@@ -160,8 +164,14 @@ Les algorithmes de prédiction de bugs ne sont pas toujours consistant \cite{ban
 \cite{Raja09} à étudier différents algorithme de modélisation des défauts d'un système a partir des donnée des défauts relevé sur huit projet open source. Il en ressort que la moyenne glissée modélise mieux les défauts des systèmes.
 
  
-\subsection{Ré-ingénierie}
-\label{sec:reingenierie}
+\subsection{Rétro-ingénierie}
+\label{sec:retroingenierie}
+Dans cette section, je presenterais  les traveaux reliés à outillage pour la rétro-ingénierie que j'ai étudié.
+\cite{Chik90a} définit la rétro-ingénierie comme \textit{"un proccessus 
+ d'analyse d'un système donnée pour identifier les composants du système et leurs relations,
+afin de créer des représentations du système sous une autre forme ou à un niveau d'abstraction plus élevé."}.
+\cite{Brun14c} afirme que la rétro-ingénierie  n'est pas limitée à certains langages courants 
+ mais est universelle. Par exemple, elle peux concerner  la base de données \citep{Delp20a} ou  l'interface graphique \citep{Verh19a}.
 
 
 \section{Avancées actuelles}
@@ -171,7 +181,10 @@ Les algorithmes de prédiction de bugs ne sont pas toujours consistant \cite{ban
 Les problèmes préalablement cités sur Izy Protect à savoir: code non versionné, ce qui engendre les pertes et écrasement de code, puis l'absence total de test unitaire automatisé, m'ont amenés à:
 \begin{itemize}
 \item Mettre en place un serveur subversion (SVN) pour versionné les code. 
-Le choix de SVN est guidé par le fait  de la simplicité de SVN  pour la compréhension.  De plus le module de contrôle de version que offre Powerbuilder n'est pas trop stable. Par exemple parfois le module considère un code déjà versionné comme un code non versionné. De plus le module de contrôle de version que offre Powerbuilder ne support pas bien les opérations avancés comme la comparaison de deux versions du code ou bien la résolution de conflit. En complément de Powerbuilder,  j'ai amener les développeurs de la CIM à utiliser TortoiseSVN \cite{tort}.
+Le choix de SVN est guidé par le fait  de sa simplicité  pour la compréhension.  
+De plus le module de contrôle de version que offre Powerbuilder n'est pas trop stable. 
+Par exemple parfois le module considère un code déjà versionné comme un code non versionné.
+ De plus le module de contrôle de version que offre Powerbuilder ne support pas bien les opérations avancés comme la comparaison de deux versions du code ou bien la résolution de conflit. En complément de Powerbuilder,  j'ai amener les développeurs de la CIM à utiliser TortoiseSVN.
 \item Reconstruire l'histoire du code source de Izy Protect depuis 2012 afin de procéder à des analyse de l'évolution du système a partir des changements entre les version. Les versions de Izy Protect sont nombreuses. J'en suis actuellement a fin des versions produites en 2014.
 \item Tester  des outils de tests unitaire sur Powerbuilder. PBUnit parait être la librairy qui permet de tester  les fonctionnalités des applications Powerbuilder au niveau du code source. 
 Je entrain de le mettre en place.
@@ -180,14 +193,24 @@ Je entrain de le mettre en place.
 
 \subsection{Analyse des fiches navettes}
 \label{sec:analyseDesFichesNavettes}
-Afin d'évaluer l'état de Izy Protect, j'ai utilisé la base de donnée des fiche navettes. 
+Afin d'évaluer l'état de Izy Protect, et contrôller l'effet de la ré-ingénierie sur Izy Protect,
+ j'ai utilisé la base de donnée des fiche navettes. 
 Après nettoyage, seul les tickets à partir de 2004 sont utilisable. 
 Les données sont non-stationnaires. 
 En me basant sur les résultats de \cite{Raja09}, j'ai utilisé la moyenne glissant avant un pas de 2 mois pour modéliser l'état du système.
 J'ai principalement mesuré les métriques suivantes: l'evolution du temps pour ferme les tickets, l'evolution du temps néccéssaire au developpeur, l'evolution du temps des tests manuel du developpeur,
-l'évolution de l'estimation du temps de developpement par le manager
+l'évolution de l'estimation du temps de developpement par le manager.
+Les resultats sont presenté dans un dashboard qui se met a jours chaque mois.
+La \figref{dashboard} montre l'apperçu du dashboard.
+Les developpeurs ont confirmés que les resultats de l'analyse reflètent bien leurs ressentit de l'état de Izy Protect. 
 
-\subsection{Outil d'aide a la ré-ingénierie logiciel}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{./figures/dashboard.png}
+  \label{fig:dashboard}
+
+\end{figure}
+\subsection{Outil d'aide a la rétro-ingénierie logiciel}
 
 \subsubsection{Outil de visualisation des appelle entre les objets }
 
