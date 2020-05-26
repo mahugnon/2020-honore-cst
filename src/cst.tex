@@ -61,7 +61,7 @@
 }
 
 \lstset{style=mystyle}
-
+\newcommand{\browserMaster}{\textit{BrowserMaster} \xspace}
 
 \title{CST --Analyse multi-facettes et opérationnelle pour la transformation des systemes d’information}
 \author{ HOUEKPETODJI Mahugnon Honoré}
@@ -82,8 +82,7 @@
 % 0.5 (1/2) pages
 CIM est une SAS au capital social de 200k détenu a 100 par DL Software. 
 CIM est éditeur, intégrateur, hébergeur et infogéreur de solutions pour l'assurance de personnes en santé, prévoyance. 
-Elle offre une expertise Santé et Prévoyance acquise après
-plus de 30 ans auprès de ses clients. 
+Elle offre une expertise Santé et Prévoyance acquise après plus de 30 ans auprès de ses clients. 
 CIM est hébergeur de ses solutions pour 90 de ses clients et plus de 1000 utilisateurs. 
 Toutes les thématiques d'infrastructure et de surveillance des flux sont intégrées à cette offre.
 CIM est propriétaire de ses infrastructures serveurs, tous les éléments actifs des systèmes et tous les éléments de stockage sont achetés par CIM, gérés et supervisés par les équipes de CIM. Aucun sous-traitant n'intervient dans les opérations quotidiennes d'hébergement, d'exploitation des solutions et des données hébergées.
@@ -163,15 +162,38 @@ Les algorithmes de prédiction de bugs ne sont pas toujours consistant \cite{ban
 
 \cite{Raja09} à étudier différents algorithme de modélisation des défauts d'un système a partir des donnée des défauts relevé sur huit projet open source. Il en ressort que la moyenne glissée modélise mieux les défauts des systèmes.
 
- 
 \subsection{Rétro-ingénierie}
 \label{sec:retroingenierie}
 Dans cette section, je presenterais  les traveaux reliés à outillage pour la rétro-ingénierie que j'ai étudié.
 \cite{Chik90a} définit la rétro-ingénierie comme \textit{"un proccessus 
  d'analyse d'un système donnée pour identifier les composants du système et leurs relations,
 afin de créer des représentations du système sous une autre forme ou à un niveau d'abstraction plus élevé."}.
+
 \cite{Brun14c} afirme que la rétro-ingénierie  n'est pas limitée à certains langages courants 
- mais est universelle. Par exemple, elle peux concerner  la base de données \citep{Delp20a} ou  l'interface graphique \citep{Verh19a}.
+ mais est universelle. 
+Par exemple, elle peux concerner  la base de données \citep{Delp20a} ou  l'interface graphique \citep{Verh19a}.
+Il est donc nécessaire de disposer d'une suite d'outils polyvalents et extensibles, indépendants du langage : cette extension peut se faire à plusieurs niveaux - méta-modèle.
+Mais aussi au niveau des outils eux-mêmes (par exemple en agissant sur le modèle).
+
+Kienle et Müller \cite{Kien10a} ont explorer la question de la construction d'outils de rétro-ingénierie.
+ Ils proposent trois axes : (1) les critères, (2) la construction et (3) l'évaluation.
+
+Bellay et Gall \cite{Bell98a} ont proposé une large liste de critères pour comparer les outils de rétro-ingénierie.
+Par contre ils ne couvrent  pas le métamodèle, l'extension du métamodèle et des outils de manière exhaustive.
+
+Govin et al \cite{Govi18a} ont identifié des critères pour les outils de  réingénierie. 
+Parmis ces critères  j'ai retenu ceux qui rapportent à la rétro-ingénierie.
+Ce sont les critères (1) de selection , (2) d'abstraction. 
+
+%Modisco
+\citet{Brun14c} a proposé et mis en oeuvre le cadre MoDisco.
+MoDisco est divisé en 4 couches, le projet de modélisation des éclipses, l'infrastructure, la technologie et les cas d'utilisation.
+La couche infrastructure contient des outils génériques tels que celui permettant de naviguer et d'interroger les modèles.
+La couche technologie contient le métamodèle spécifique, (Java, XML, JSP, ...).
+Et la couche des cas d'utilisation contient l'action spécifique pour un modèle, par exemple le refactoring de code Java. 
+MoDisco inclut , navigateur de model, un editeur pour voir le code des entité d'un model, un support graphique pour faire des requetes sur les elements du model. 
+Par contre \citet{Brun14c}, ne propose que l'UML pour visualiser les elements d'un model.
+Alors que pour un système large, l'UML devient vite une toile d'araigné et fraine une compréhension rapide du système.
 
 
 \section{Avancées actuelles}
@@ -187,8 +209,7 @@ Par exemple parfois le module considère un code déjà versionné comme un code
  De plus le module de contrôle de version que offre Powerbuilder ne support pas bien les opérations avancés comme la comparaison de deux versions du code ou bien la résolution de conflit. En complément de Powerbuilder,  j'ai amener les développeurs de la CIM à utiliser TortoiseSVN.
 \item Reconstruire l'histoire du code source de Izy Protect depuis 2012 afin de procéder à des analyse de l'évolution du système a partir des changements entre les version. Les versions de Izy Protect sont nombreuses. J'en suis actuellement a fin des versions produites en 2014.
 \item Tester  des outils de tests unitaire sur Powerbuilder. PBUnit parait être la librairy qui permet de tester  les fonctionnalités des applications Powerbuilder au niveau du code source. 
-Je entrain de le mettre en place.
- L'entreprise adopte déjà Tosca . 
+Je suis entrain de le mettre en place.
 \end{itemize}
 
 \subsection{Analyse des fiches navettes}
@@ -201,18 +222,45 @@ En me basant sur les résultats de \cite{Raja09}, j'ai utilisé la moyenne gliss
 J'ai principalement mesuré les métriques suivantes: l'evolution du temps pour ferme les tickets, l'evolution du temps néccéssaire au developpeur, l'evolution du temps des tests manuel du developpeur,
 l'évolution de l'estimation du temps de developpement par le manager.
 Les resultats sont presenté dans un dashboard qui se met a jours chaque mois.
-La \figref{dashboard} montre l'apperçu du dashboard.
+La Figure \ref{dashboardFig} montre l'apperçu du dashboard.
 Les developpeurs ont confirmés que les resultats de l'analyse reflètent bien leurs ressentit de l'état de Izy Protect. 
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=\textwidth]{./figures/dashboard.png}
-  \label{fig:dashboard}
+  \label{dashboardFig}
 
 \end{figure}
-\subsection{Outil d'aide a la rétro-ingénierie logiciel}
 
-\subsubsection{Outil de visualisation des appelle entre les objets }
+
+\subsection{Outil d'aide a la rétro-ingénierie logiciel}
+Pour répondre aux exigences détaillées dans la section \secref{retroingenierie}, j'ai développé une suite d'outils d'aide à la retro-ingenierie.
+Ces outils sont developpeur au dessus de la platform Moose \cite{Nier05c}.
+En effet, la plate-forme offre un méta-modèle générique et quatre outils principaux pour l'analyse des systèmes logiciels.
+Il s'agit de (1) Famix: un meta-model qui permet au developpeur de representer un programme, (2) Moose Query: un API pour naviguer dans un model Famix,
+(3) Les tags: utilisées pour enrichir le code source avec des informations qui ne peuvent pas être directement déduites du code source et 
+(4) Roassal: Un framework de visualisation intégré dans Moose.
+Dans la suite, je presenterai d'abord l'achitecture mise en place pour les outils puis  chaque outils.
+
+
+\subsubsection{Architecture des outils }
+L'architecture global  de la suite d'outils est principalement composé d'un \browserMaster et des navigateurs.
+Le tout s'execute sur une instance d'un model Famix. 
+Il a été pensé dans le but de facilité l'experience du developpeur dans les differentes activités de la retro-ingenierie logiciel.
+Le \browserMaster est responsable de l'exchange d'information entre les navigateurs.
+Il est au courant de tous les navigateurs ouvert. 
+Il se charge de notifier tous les navigateurs ouvert en cas d'évènement.
+
+Chaque navigateur fonction sur une entité du model Famix courante local a lui.
+Cet entité peut être un seul entité ou un group d'entité.
+Il navigateur est peut émettre ou recevoir un evenement. 
+\paragraph{emission d'évènement: }L'emission d'un evènement par un navigateur est gouverner par son mode de propagation.
+En mode de propagation actifs, le navigateur emet un evenement pour partager globalement son entité courant a chaque fois que l'entité change.
+Dans le contraire, l'entité courant est gardé localement.
+
+\paragraph{reception d'évènement: } Le comportement d'un navigateur a la reception d'un évènement dépend du mode de réception de ce dernier.
+
+
 
 \subsubsection{Outil de détection de code mort}
 
