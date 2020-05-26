@@ -222,14 +222,16 @@ En me basant sur les résultats de \cite{Raja09}, j'ai utilisé la moyenne gliss
 J'ai principalement mesuré les métriques suivantes: l'evolution du temps pour ferme les tickets, l'evolution du temps néccéssaire au developpeur, l'evolution du temps des tests manuel du developpeur,
 l'évolution de l'estimation du temps de developpement par le manager.
 Les resultats sont presenté dans un dashboard qui se met a jours chaque mois.
-La Figure \ref{dashboardFig} montre l'apperçu du dashboard.
+La \figref{dashboardFig} montre l'apperçu du dashboard.
 Les developpeurs ont confirmés que les resultats de l'analyse reflètent bien leurs ressentit de l'état de Izy Protect. 
 
 \begin{figure}[htbp]
-  \centering
+  \begin{center}
   \includegraphics[width=\textwidth]{./figures/dashboard.png}
-  \label{dashboardFig}
-
+  \caption{Dashboard d'analyse de tickets}
+  \label{fig:dashboardFig}
+\end{center}
+\vspace{-0.3cm}
 \end{figure}
 
 
@@ -244,6 +246,16 @@ Dans la suite, je presenterai d'abord l'achitecture mise en place pour les outil
 
 
 \subsubsection{Architecture des outils }
+\begin{figure}[htbp]
+  \begin{center}
+  \includegraphics[width=1\linewidth]{./figures/architecture.pdf}
+  \caption{Architecture de la suite d'outils}
+  \label{fig:applicationArchitecture}
+  \end{center}
+  \vspace{-0.3cm}
+\end{figure}
+
+La \figref{applicationArchitecture} montre l'architecture globale de la suite d'outils.
 L'architecture global  de la suite d'outils est principalement composé d'un \browserMaster et des navigateurs.
 Le tout s'execute sur une instance d'un model Famix. 
 Il a été pensé dans le but de facilité l'experience du developpeur dans les differentes activités de la retro-ingenierie logiciel.
@@ -255,14 +267,18 @@ Chaque navigateur fonction sur une entité du model Famix courante local a lui.
 Cet entité peut être un seul entité ou un group d'entité.
 Il navigateur est peut émettre ou recevoir un evenement. 
 \paragraph{emission d'évènement: }L'emission d'un evènement par un navigateur est gouverner par son mode de propagation.
-En mode de propagation actifs, le navigateur emet un evenement pour partager globalement son entité courant a chaque fois que l'entité change.
+En mode de propagation actifs, le navigateur emet un evenement pour publier  son entité courant a chaque fois que l'entité change.
 Dans le contraire, l'entité courant est gardé localement.
 
 \paragraph{reception d'évènement: } Le comportement d'un navigateur a la reception d'un évènement dépend du mode de réception de ce dernier.
+Ainsi chaque navigateur possède trois mode de réception d'évènement. 
+Il s'agit des modes (1) \textit{follow}: le navigateur change remplace son entité courant par l'entité reçu via l'evènement,
+(2) \textit{highlight}: le navigateur cherche l'entité reçu via l'évènement dans son entité courant, s'il le trouve, il le colorie,
+(3) \textit{ignore}: le navigateur ne fait rien a la reception de l'évènement.
 
 
+\subsubsection{Nivagateur de model}
 
-\subsubsection{Outil de détection de code mort}
 
 \subsubsection{Outil de visualisation de code dupliqué}
 
