@@ -248,7 +248,7 @@ Dans la suite, je presenterai d'abord l'achitecture mise en place pour les outil
 \subsubsection{Architecture des outils }
 \begin{figure}[htbp]
   \begin{center}
-  \includegraphics[width=1\linewidth]{./figures/architecture.pdf}
+  \includegraphics[width=0.7\linewidth]{./figures/architecture.pdf}
   \caption{Architecture de la suite d'outils}
   \label{fig:applicationArchitecture}
   \end{center}
@@ -263,10 +263,10 @@ Le \browserMaster est responsable de l'exchange d'information entre les navigate
 Il est au courant de tous les navigateurs ouvert. 
 Il se charge de notifier tous les navigateurs ouvert en cas d'évènement.
 
-Chaque navigateur fonction sur une entité du model Famix courante local a lui.
+Chaque navigateur fonction sur une entité du model Famix  local a lui.
 Cet entité peut être un seul entité ou un group d'entité.
 Il navigateur est peut émettre ou recevoir un evenement. 
-\paragraph{emission d'évènement: }L'emission d'un evènement par un navigateur est gouverner par son mode de propagation.
+\paragraph{emission d'évènement:} L'emission d'un evènement par un navigateur est gouverner par son mode de propagation.
 En mode de propagation actifs, le navigateur emet un evenement pour publier  son entité courant a chaque fois que l'entité change.
 Dans le contraire, l'entité courant est gardé localement.
 
@@ -276,27 +276,117 @@ Il s'agit des modes (1) \textit{follow}: le navigateur change remplace son entit
 (2) \textit{highlight}: le navigateur cherche l'entité reçu via l'évènement dans son entité courant, s'il le trouve, il le colorie,
 (3) \textit{ignore}: le navigateur ne fait rien a la reception de l'évènement.
 
-
+Tous les navigateurs presentents un boutton qui indique sont mode d'émission d'évènement, et tois bouttons qui indiquent sont mode de reception d'évènement
 \subsubsection{Nivagateur de model}
+\begin{figure}[htbp]
+  \begin{center}
+  \includegraphics[width=0.5\textwidth]{./figures/modelBrowser.png}
+  \caption{Navigateur de model}
+  \label{fig:modelBrowser}
+\end{center}
+\vspace{-0.3cm}
+\end{figure}
+ Le navigateur de model comme le montre la \figref{modelBrowser} outre la partie commune a touts les navigateurs, comporte deux bouttons (\textit{All PWBObjects}, \textit{Scoped View}), un contenu et un champ de recherche.
+ 
+Le contenu navigateur presente par défaut la liste des entités que contient l'éntité courant du navigateur. 
+L'utilisateurs peut décidé de se concentrer sur un certain nombres d'entité. Dans ce cas il les selectionne et il active le boutton  \textit{Scoped View}.
+Pour le moment le navigateur de model est juste une liste. Mais Il est prévu de l'étendre.
 
+Le champ de recherche du navigateur permet à l'utilisateur d'écrire une requête de recherche sur son entité Famix courante.
+ Cette entité est pour la plus part du temps un groupe d'entité Famix.
+Cette requête peut être lexicale, sous forme de simple chaîne pour une recherche lexicale, ou structurelle.
+Par exemple, si l'utilisateur recherche \textit{include : FamixPWBAttribute}, le résultat sera toutes les entités contenant des FamixPWBAttribute (attributs Powerbuilder).
 
-\subsubsection{Outil de visualisation de code dupliqué}
+\subsubsection{navigateur de graph d'appel}
+\begin{figure}[htbp]
+  \begin{center}
+  \includegraphics[width=0.7\textwidth]{./figures/callGraphBrowser.png}
+  \caption{Graphe d'appel avec l'option de reduction de complexité du graphe}
+  \label{fig:graphAppel}
+\end{center}
+\vspace{-0.3cm}
+\end{figure}
+La \figref{graphAppel} donne un apperçu du graphe d'appel avec les options. 
+Ce outil permet principalement de visualizer sous forme d'un graph les entités qui utilisent l'entité courant du navigateur.
+Les noeuds reprensentent les entités. Les fleches reprensentent l'ensemble des utilisations entre deux entités.
+Le sens de la flèche indique le sense des utilisations.
+En effet pour un système large comme Izy Protect par exemple, ce graph peut rapidement devenir illisible. 
+Pour palier a ce problème, l'outil integre un panel d'option qui permet de fitrer le graph par type d'entité a l'origine des appelles.
+Afin de donner plus de contexte au developpeur, quand  il glisse la souris sur une flèche,  un popup lui montre toutes les utilisationsavec leurs code source.
 
-\subsubsection{Outil de présentation de code source}
+Le navigateur de graph d'appel pemet aussi au developpeur de marquer les entités afin de lui ajouter une information qu'on ne peux pas extraire directement du code source.
+Une connaissance qui ressort de l'expérience du developpeur sur le système.
 
-\section{Roadmap}
+\subsubsection{navigateur de Code mort}
+\begin{figure}[htbp]
+  \begin{center}
+  \includegraphics[width=0.5\textwidth]{./figures/deadMethodBrowser.png}
+  \caption{navigateurde code mort}
+  \label{fig:deadMethodBrowser}
+\end{center}
+\vspace{-0.3cm}
+\end{figure}
+La \figref{deadMethodBrowser} montre le navigateur de code mort.
+Ce navigateur pressent pour le moment les methods de l'entité courant du navigateur qui le sont jamais appelé dans le système et les que ces methods appels.
+
+\subsubsection{navigateur de code dupliqué}
+\begin{figure}[htbp]
+  \begin{center}
+  \includegraphics[width=0.7\textwidth]{./figures/duplicationBrowser.png}
+  \caption{navigateur de code dupliqué}
+  \label{fig:duplicationBrowser}
+\end{center}
+\vspace{-0.3cm}
+\end{figure}
+La \figref{duplicationBrowser} présent le navigateur de code dupliqué. Les carrés externes reprensentent les entités qui presentent de clone.
+Dans le cas de la \figref{duplicationBrowser} c'est des methods.  
+Les carrés internes représentent les clones que presentent une entité.
+Les code dupliqués sont representés de façon de ce que l'utilisateur puis facilement l'inspecter.
+Il utilise actuellement un algorithme de détection basé sur l'égalité strict des chaines de carctères \citep{Duca99b}. 
+Cet algorithme peut être remplacé par un algorithme plus sophistiqué pour détecter les doublons \citep{Roy07a}. 
+
+Supposont deux entités \textit{e1} et \textit{e2} qui presentent de clones en commun.
+Quand l'utilisateur clique sur \textit{e1}, les clone de \textit{e1} prennent des couleurs differentes.
+Les clones que \textit{e1} à en commun avec \textit{e2}, dans \textit{e2} prennent les mêmes couleurs que leurs que leurs semblables dans \textit{e1}.
+Cela permet de voir plus facilement quel entités on de code en commun et de comparer les codes sources dans le navigateur de code que je presenterai dans la suite. 
+
+\subsubsection{Navigateur de code source}
+
+\begin{figure}[htbp]
+  \begin{center}
+  \includegraphics[width=0.7\textwidth]{./figures/sourceCodeBrowser.png}
+  \caption{navigateur de code dupliqué}
+  \label{fig:sourceCodeBrowser}
+\end{center}
+\vspace{-0.3cm}
+\end{figure}
+La \figref{sourceCodeBrowser} presente le navigateur de code source. 
+Ce navigateur est une fenêtre qui affiche le code source de entité courant.
+En particulier dans le cadre d'un fragment dupliqué, le code source de l'entité qui contient ce fragment est affiché normalement sauf que la partie du code qui represente le fragment dupliqué est en rouge 
+comme sur la \figref{sourceCodeBrowser}
+
+\section{Future traveaux}
 \label{sec:roadmap}
+Toutes les outils presentés ci-dessus sont conçus dans le but de netoyer le code de visualiser l'interaction entre les differentes classe de Izy Protect.
+Par contre les developpeurs ne l'ont pas encore utilisés dans leurs quotidien.
+Dans ce sens, j'identifie la validation de ces outils dans la suite mes traveaux.
+
+D'un autre côté, l'entreprise prevoit de migrer une partie du système dans une architecture orienté service. 
+Les développeurs ont donc exprémé le besoin d'extraire des règles metier du code.
+Plusieurs traveaux sont presenter dans la literature dans ce sens en particulier  \cite{Lei05a} qui se base sur l'analyse static des interaction des fonctions avec les variables pour extraire les regles metier. 
+Je souhaite combiner cette method avec  la method proposer \cite{anqu19a} pour propose un outil d'extraction de regles metier dans les systèmes patrimoniaux.
+
+Je mettrai en place et j'etudirai  l'impact du DevOps a la CIM. 
 
 \section{Publications}
 
 Cette section présente la liste des  soumissions liée à cette thèse.
 
-
-\subsection{Papiers soumis}
-
 \begin{enumerate}
-  \item 
-  \item 
+  \item Journée de travail du groupe Rimel du GR/GPL: HOUEKPETODJI Honoré, Nicolas Anquetil
+  \textit{Improving practices in a medium Franch company: First step}
+  \item 13th International Conference on the Quality of Information and Communications Technology 2020: HOUEKPETODJI Honoré,
+  
 \end{enumerate}
 
 \section{Formation doctorale}
