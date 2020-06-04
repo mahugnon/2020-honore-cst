@@ -79,17 +79,18 @@
 % \end{abstract}
 \section{Description du sujet de la thèse}
 % 0.5 (1/2) pages
-CIM est une SAS au capital social de 200 k détenu a 100 par DL Software. 
+CIM est une SAS au capital social de 200 k détenu à 100\% par DL Software. 
 CIM est éditeur, intégrateur, hébergeur et infogéreur de solutions pour l'assurance de personnes en santé, prévoyance. 
 Elle offre une expertise Santé et Prévoyance acquise après plus de 30 ans auprès de ses clients. 
-CIM est hébergeur de ses solutions pour 90 de ses clients et plus de 1000 utilisateurs. 
+CIM est hébergeur de ses solutions pour 90\% de ses clients et plus de 1000 utilisateurs. 
 Toutes les thématiques d'infrastructure et de surveillance des flux sont intégrées à cette offre.
 CIM est propriétaire de ses infrastructures serveurs, tous les éléments actifs des systèmes et tous les éléments de stockage sont achetés par CIM, gérés et supervisés par les équipes de CIM. Aucun sous-traitant n'intervient dans les opérations quotidiennes d'hébergement, d'exploitation des solutions et des données hébergées.
 
-CIM est certifiée Microsoft GOLD Partner. 
-Elle est l'éditeur des progiciels de la gamme Izy Links et assure l'intégration de l'ensemble des briques de cette gamme ainsi que des briques partenaires nécessaires à la bonne réussite du projet. Cette solution est développée en PowerBuilder sur base de données DB2. L'équipe de développement vient d'upgrader en PowerBuilder 2017 (été 2018) et est en cours de passage sur DB2 v11 (avec l'aide d'un DBA IBM – prestation 2018).
+CIM est certifiée \textit{Microsoft GOLD Partner}. 
+Elle est l'éditeur des progiciels de la gamme Izy Links et assure l'intégration de l'ensemble des briques de cette gamme ainsi que des briques partenaires nécessaires à la bonne réussite du projet. Cette solution est développée en PowerBuilder sur base de données DB2.
+L'équipe de développement vient d'avoir PowerBuilder version 2017 (été 2018) et est en cours de passage sur DB2 v11.
 
-Le système de gestion est centré sur le back office Izy Protect, autour duquel gravite l'ensemble des briques complémentaires répondant à l'assemble des besoins, et pouvant être activées ou non. 
+Le système de gestion est centré sur Izy Protect, autour duquel gravite l'ensemble des briques complémentaires répondant à l'assemble des besoins, et pouvant être activées ou non. 
 La société CIM a effectué une analyse de risque pour son évolution et croissance en 2017 d'où il ressort que Izy Protect souffre des problèmes 
 (1) Vieux langage,
 (2) Logiciel vieillissant,
@@ -97,7 +98,8 @@ La société CIM a effectué une analyse de risque pour son évolution et croiss
 (4) Changements à haut risque.
 Ces problèmes sont récurrents chez les organismes gérant des systèmes d'information \cite{Deme02a}.
 
-Ce travail de doctorat consiste à proposer des modèles et des mécanismes permettant d'assurer une ré-ingénierie des systèmes d'information. Les expériences et validation des prototypes se feront dans le contexte de l'application du système d'information écrit en PowerBuilder de la société CIM
+Ce travail de doctorat consiste à proposer des modèles et des mécanismes permettant d'assurer une ré-ingénierie des systèmes d'information. 
+Les expériences et validation des prototypes se feront dans le contexte de l'application du système d'information écrit en PowerBuilder de la société CIM
 
 
 \section{Etat de l'art}
@@ -107,14 +109,18 @@ Ce travail de doctorat consiste à proposer des modèles et des mécanismes perm
 Cette section présente Izy Protect, ainsi que les mécanismes de ré-ingénierie des systèmes d'information patrimoniaux.
 \subsection{Présentation de Izy Protect}
 \label{sec:izyProtect}
-Izy Protect est un système de plus de 3 MLOC écrit en Powerbuilder et maintenu depuis plus de 20 ans par les développeurs la CIM. Le code source est organisé par bibliothèques Powerbuilder. 
-Izy Protect compte 117 bibliothèques. La plus large à une taille supérieur à 300 KLOC.
+Izy Protect est un système de plus de 3 MLOC écrit en Powerbuilder et maintenu depuis plus de 20 ans par les développeurs de la CIM.
+ Le code source est organisé par bibliothèques Powerbuilder. 
+Izy Protect compte 117 bibliothèques.
+ La plus large à une taille d'environ 300 KLOC.
 Durant toutes ces années, il y a eu beaucoup de changement dans l'équipe de développeurs. 
-Vu la complexité actuelle du système, les développeurs ont de plus en plus du mal a le maintenir.
-Les anciennes versions du système sont stockées sur un disque dur. Pour des raisons internes à la CIM, les versions d'Izy Protect ont été perdues jusqu'en 2010. De plus, les développeurs risquent à tout moment d'écraser leur travaille. Les développeurs modifient Izy protect en réponse a qui décrit le travaille à faire. 
-De plus, il n'y a pas de tests unitaire automatisés.
-Ce qui augment la craint des développeurs au petit changement. 
-Quand un système à plusieurs décennies de vie, la rétro-ingénierie est une activité centrale pour le maintenir \cite{Deme02a}.
+Vu la complexité actuelle du système, les développeurs ont de plus en plus du mal à le maintenir.
+Les anciennes versions du système sont stockées sur un disque dur.
+ Pour des raisons internes à la CIM, les versions d'Izy Protect ont été perdues jusqu'en 2010. 
+ De plus, les développeurs risquent à tout moment de faire de régression (casser une fonctionnalité existant). 
+Izy Protect  n'est pas couvert avec des tests unitaires automatisés.
+Ceci augmente la craint des développeurs pour de petites modifications. 
+Quand un système a plusieurs décennies de vie, la rétro-ingénierie est une activité centrale pour le maintenir \cite{Deme02a}.
 
 Dans l'entreprise, les tickets sont stockés dans la base de données des tickets ou fiches navettes depuis 1998. 
 Un ticket représente un travail unitaire.
@@ -142,52 +148,66 @@ Un ticket comporte entre autres les caractéristiques suivantes :
 
 Les systèmes patrimoniaux sont des systèmes en constant changement : production de nouvelles fonctionnalités.
 La deuxième loi de Lehman \cite{Lehm96a} stipule qu'à mesure que les logiciels évoluent, la complexité croissante et l'augmentation des défauts entraîneront une baisse de la satisfaction des parties prenantes, à moins que les équipes de projet n'entreprennent le travail nécessaire pour maintenir la qualité.
-Dans ce sens, nombreux travaux de la littérature proposent des techniques, pour suivre l'évolution de l'état de ces systèmes.
+Dans ce sens, de nombreux travaux de la littérature proposent des techniques, pour suivre l'évolution de l'état de ces systèmes.
 
-\citep{Zhan10b} utilise les données des occurrences bugs et le temps pour modéliser l'évolution d'un système logiciel avec c\-charts.
+\citet{Zhan10b} utilise les données des occurrences bugs et le temps pour modéliser l'évolution d'un système logiciel avec c\-charts.
 
-\citep{lenar17} propose un système de recommandation d'action au développeur pour un nouveau bug. Le système se base sur l'historique des bugs, le code source ainsi que qu'un algorithme de prédiction. Pour que ça marche, le code source doit être géré dans un système de contrôle de version. Ce qui n'est pas le cas avec Izy Protect.
+\citet{lenar17} propose un système de recommandation d'action au développeur pour un nouveau bug. Le système se base sur l'historique des bugs, le code source ainsi que qu'un algorithme de prédiction. Pour que ça marche, le code source doit être géré dans un système de contrôle de version. Ce qui n'est pas le cas avec Izy Protect.
 
-\citep{port17} utilise les modèles et l'analyse de l'historique des défauts pour évaluer la qualité d'un système et prédire l'effort nécessaire pour améliorer le système. Les métriques mesurées sont : le taux de bugs sur une période de temps, le ratio entre le taux de d'augmentation de la taille du système et le taux de bugs, le temps moyen entre la découverte des bugs, l'effort pour résoudre les bugs, estimation des risques de futurs bugs...
+\citet{port17} utilise les modèles et l'analyse de l'historique des défauts pour évaluer la qualité d'un système et prédire l'effort nécessaire pour améliorer le système. Les métriques mesurées sont : le taux de bugs sur une période de temps, le ratio entre le taux de d'augmentation de la taille du système et le taux de bugs, le temps moyen entre la découverte des bugs, l'effort pour résoudre les bugs, estimation des risques de futurs bugs...
 Certain de ces métriques comme : le taux de bugs par période de temps, l'effort pour résoudre les bugs sont intéressants dans le cadre d'Izy Protect. 
 Les autres ne se conforment pas au contexte, car les tickets d'Izy protect ne sont directement liés au code de façon standard.
 Chaque développeur note le numéro de tickets à sa façon dans le code. 
 
 
-\cite{kim07,Bibi06} propose un modèle de prédiction des défauts avec des algorithmes d'apprentissage en utilisant l'historique des bugs de système. 
-Les algorithmes de prédiction de bugs ne sont pas toujours consistants \cite{bang19}. De plus, ils ne tiennent pas compte des changements qui peuvent être imprévisible dans le code. De plus, Izy Protect est système commercial, multi-utilisateurs, et donc chaque utilisateur a des fonctionnalités ou des changements qui lui est spécifique. 
+\citet{kim07,Bibi06} proposent des modèles de prédiction des défauts avec des algorithmes d'apprentissage en utilisant l'historique des bugs de système. 
+Les algorithmes de prédiction de bugs ne sont pas toujours consistants \cite{bang19}. De plus, ils ne tiennent pas compte des changements qui peuvent être imprévisible dans le code. De plus, Izy Protect est logiciel commercial, multi-utilisateurs, et donc chaque utilisateur a des fonctionnalités ou des changements qui lui est spécifique. 
 
-\cite{naga05} Utilise l'historique le nombre de lignes de code changer pour un bug fixe ou une nouvelle fonctionnalité pour prédire la densité de bug le code. Pour que ceci soit réalisable, il faut que le code soit préalablement versionné dans un système de contrôle de version.
+\citet{naga05} utilise l'historique le nombre de lignes de code changées pour une correction de  bug  ou une nouvelle fonctionnalité pour prédire la densité de bug le code. Pour que ceci soit réalisable, il faut que le code soit préalablement versionné dans un système de contrôle de version.
 
-\cite{Raja09} à étudier différents algorithme de modélisation des défauts d'un système à partir des donnée des défauts relevé sur huit projets open source. Il en ressort que la moyenne glissée modélise mieux les défauts des systèmes.
+\citet{Raja09} à étudier différents algorithme de modélisation des défauts d'un système à partir des donnée des défauts relevés sur huit projets dont les codes sources sont ouverts. Il en ressort que la moyenne glissée modélise mieux les défauts des systèmes.
 
 \subsection{Rétro-ingénierie}
 \label{sec:retroingenierie}
-Dans cette section, je présenterais les travaux reliés à outillage pour la rétro-ingénierie que j'ai étudié.
-\cite{Chik90a} définit la rétro-ingénierie comme \textit{un processus d'analyse d'un système donnée pour identifier les composants du système et leurs relations, afin de créer des représentations du système sous une autre forme ou à un niveau d'abstraction plus élevé."}.
+Dans cette section, je présenterai les travaux reliés à l'outillage pour la rétro-ingénierie que j'ai étudié.
+\citet{Chik90a} définit la rétro-ingénierie comme \textit{un processus d'analyse d'un système données pour identifier les composants du système et leurs relations, afin de créer des représentations du système sous une autre forme ou à un niveau d'abstraction plus élevé."}.
 
-\cite{Brun14c} affirme que la rétro-ingénierie n'est pas limitée à certains langages courants, mais est universelle. 
-Par exemple, elle peut concerner la base de données \citep{Delp20a} ou l'interface graphique \citep{Verh19a}.
+\citet{Brun14c} affirme que la rétro-ingénierie n'est pas limitée à certains langages courants, mais est universelle. 
+Par exemple, elle peut concerner la base de données \cite{Delp20a} ou l'interface graphique \cite{Verh19a}.
 Il est donc nécessaire de disposer d'une suite d'outils polyvalents et extensibles, indépendants du langage : cette extension peut se faire à plusieurs niveaux - méta-modèle.
 Mais aussi au niveau des outils eux-mêmes (par exemple en agissant sur le modèle).
 
-Kienle et Müller \cite{Kien10a} on explorer la question de la construction d'outils de rétro-ingénierie.
-Ils proposent trois axes : (1) les critères, (2) la construction et (3) l'évaluation.
+C'est dans cette optique que \citet{Kien10a} reconnaissent  le besoin d'outils pour la retro-ingénierie qui fournissent des fonctionnalités permettant d'extraire des informations de bas niveau des systèmes, d'analyser et de générer des connaissances sur les systèmes, et de visualiser ces connaissances afin que les ingénieurs puissent comprendre efficacement les aspects du système qui les intéressent.
+De ce point de vue ils identifient que ces outils doivent être:
 
-Bellay et Gall \cite{Bell98a} ont proposé une large liste de critères pour comparer les outils de rétro-ingénierie.
+  (1) scalable: capacité de ces outils a fonctionné pour la rétro-ingénierie de petites aux larges logiciels;
+  (2) interoperable: ces outils doivent être capital de Communiquer avec des outils externes;
+ (3) personnalisable: les activités de rétro-ingénierie étant variables, les utilisateurs d'outils de retro-ingenierie doivent pouvoir continuellement
+ les  adapter pour répondre aux besoins changeants;
+ (4) utilisable: facilité d'utilisation;
+(5) adoptable: facilité d'apprentissage.
+
+Ainsi les outils qui seront proposés pour la rétro-ingénierie de Izy Protect doivent respecter ces règles là.
+
+\citet{Bell98a} ont proposé un esemble de critères pour comparer les outils de rétro-ingénierie.
 Par contre, ils ne couvrent pas le méta-modèle, l'extension du méta-modèle et des outils de manière exhaustive.
 
-Govin et al \cite{Govi18a} ont identifié des critères pour les outils de réingénierie. 
-Parmi ces critères, j'ai retenu ceux qui rapportent à la rétro-ingénierie.
-Ce sont les critères (1) de sélection (2) d'abstraction. 
+\citet{Govi18a} ont identifié des critères pour les outils de réingénierie. 
+Parmi ces critères, j'ai retenu ceux qui se rapportent à la rétro-ingénierie.
+Ce sont les critères (1) de sélection (2) d'abstraction.  
+Le critère de sélection exige que l'outil de rétro-ingénierie permette a l'utilisateur de selectionner des éléments  du code source d'un système 
+qui repondent à une requête donnée.
+L'outil doit aussi permettre a l'utilisateur d'abstraire les caractéristiques des entités du code souce à un haut nivau d'abstraction. 
+Par example: déduire de la complexité cyclomatique des classes d'un package, la complexité cyclomatique du package.
+
 
 %Modisco
 \citet{Brun14c} a proposé et mis en œuvre le cadre MoDisco.
-MoDisco est divisé en 4 couches, le projet de modélisation des éclipses, l'infrastructure, la technologie et les cas d'utilisation.
-La couche l'infrastructure contient des outils génériques permettant de naviguer et d'interroger les modèles.
+MoDisco est divisé en 4 couches, un projet de modélisation de la plateforme Eclipse, l'infrastructure, la technologie et les cas d'utilisation.
+La couche infrastructure contient des outils génériques permettant de naviguer et d'interroger les modèles.
 La couche technologie contient le méta-modèle spécifique (Java, XML, JSP, ...).
 Et la couche des cas d'utilisation contient l'action spécifique pour un modèle, par exemple le remaniement de code Java.
-MoDisco inclut, navigateur de modèle, un éditeur pour voir le code des entité d'un modèle, un support graphique pour faire des requêtes sur les éléments du modèle. 
+MoDisco inclut: un navigateur de modèle, un éditeur pour voir le code des entité d'un modèle, un support graphique pour faire des requêtes sur les éléments du modèle. 
 Par contre \citet{Brun14c}, ne propose que l'UML pour visualiser les éléments d'un modèle.
 Alors que pour un système large, l'UML devient vite une toile d'araignée et freine une compréhension rapide du système.
 
@@ -203,8 +223,8 @@ De plus, le module de contrôle de version qu'offre Powerbuilder n'est pas trop 
 Par exemple, parfois, le module considère un code déjà versionné comme un code non versionné.
 De plus, le module de contrôle de version qu'offre Powerbuilder ne supporte pas bien les opérations avancées comme la comparaison de deux versions du code ou bien la résolution de conflit. En complément de Powerbuilder, j'ai amené les développeurs de la CIM à utiliser TortoiseSVN.
 \item Reconstruire l'histoire du code source de Izy Protect depuis 2012 afin de procéder à des analyses de l'évolution du système à partir des changements entre les versions. Les versions d'Izy Protect sont nombreuses. J'en suis actuellement a fin des versions produites en 2014.
-\item Tester des outils de tests unitaires sur Powerbuilder. PBUnit paraît être la libraire qui permet de tester les fonctionnalités des applications Powerbuilder au niveau du code source. 
-Je suis entrain de le mettre en place.
+\item Tester PBUnit\footnote{https://sourceforge.net/p/pbunit/wiki/Home/} qui paraît être la libraire qui permet de tester les fonctionnalités des applications Powerbuilder au niveau du code source. 
+
 \end{itemize}
 
 \subsection{Analyse des fiches navettes}
