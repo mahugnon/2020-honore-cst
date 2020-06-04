@@ -105,13 +105,15 @@ Les expériences et validation des prototypes se feront dans le contexte de l'ap
 \section{Etat de l'art}
 \label{sec:stateOfTheArt}
 % 1 pages
-
-Cette section présente Izy Protect, ainsi que les mécanismes de ré-ingénierie des systèmes d'information patrimoniaux.
+Dans cette section, je presenterai Izy Protect et les travaux qui se penchent sur la question de la ré-ingénierie des systèmes d'informations.
+%===========================================================================================================================================================
 \subsection{Présentation de Izy Protect}
 \label{sec:izyProtect}
-Izy Protect est un système de plus de 3 MLOC écrit en Powerbuilder et maintenu depuis plus de 20 ans par les développeurs de la CIM.
+Izy Protect est un système de plus de 3 MLOC écrit en Powerbuilder et maintenu depuis plus de 20 ans par les développeurs de la CIM. 
+Aujourd'hui Izy Protect est maintenu par une equipe de 18 developpeurs.
  Le code source est organisé par bibliothèques Powerbuilder. 
-Izy Protect compte 117 bibliothèques.
+Izy Protect compte 117 bibliothèques. Les bibliothèques de Izy Protect peuvent être regroupées en des modules métier.
+ Par contre cette information ne peux pas être directement déduites du code.
  La plus large à une taille d'environ 300 KLOC.
 Durant toutes ces années, il y a eu beaucoup de changement dans l'équipe de développeurs. 
 Vu la complexité actuelle du système, les développeurs ont de plus en plus du mal à le maintenir.
@@ -120,10 +122,12 @@ Les anciennes versions du système sont stockées sur un disque dur.
  De plus, les développeurs risquent à tout moment de faire de régression (casser une fonctionnalité existant). 
 Izy Protect  n'est pas couvert avec des tests unitaires automatisés.
 Ceci augmente la craint des développeurs pour de petites modifications. 
-Quand un système a plusieurs décennies de vie, la rétro-ingénierie est une activité centrale pour le maintenir \cite{Deme02a}.
+Les caractéristiques de Izy Protect montre qu'il est un système de valeur pour l'entreprise. En plus il est développé avec un vieux langage de programmation: PowerBuilder.
+Ces caractéristiques reflètent la définition d'un système \textbf{patrimonial} selon \citet{Deme02a}.
+De plus, quand un système a plusieurs décennies de vie, la rétro-ingénierie est une activité centrale pour le maintenir \cite{Deme02a}.
 
-Dans l'entreprise, les tickets sont stockés dans la base de données des tickets ou fiches navettes depuis 1998. 
-Un ticket représente un travail unitaire.
+Dans l'entreprise, les travaux de maintenances ou de developpements sur Izy Protect sont identifiés par des tickets.
+Les tickets sont stockés dans la base de données des tickets ou fiches navettes depuis 1998. 
 La base de données des tickets pilote l'ensemble du processus d'évolution du logiciel : attribution du travail aux développeurs, gestion du flux de travail pour répondre à une demande du client, informations de facturation sur chaque tâche.
 Il existe des tickets pour la correction de défauts, la rédaction de documentation, l'ajout de nouvelles fonctionnalités, etc. 
 
@@ -143,11 +147,11 @@ Un ticket comporte entre autres les caractéristiques suivantes :
 \end{itemize}
 
 
-\subsection{Analyse de l'évolution de l'état d'un logiciel patrimonial}
+\subsection{Analyse de l'évolution de l'état d'un système logiciel patrimonial}
 \label{sec:etatLogiciel}
-
 Les systèmes patrimoniaux sont des systèmes en constant changement : production de nouvelles fonctionnalités.
 La deuxième loi de Lehman \cite{Lehm96a} stipule qu'à mesure que les logiciels évoluent, la complexité croissante et l'augmentation des défauts entraîneront une baisse de la satisfaction des parties prenantes, à moins que les équipes de projet n'entreprennent le travail nécessaire pour maintenir la qualité.
+Selon \citet{Deme02a}, collecter et interpréter les données et les résumer dans une vue cohérente est une étape importante pour la compréhension initiale d'un système logiciel existant.
 Dans ce sens, de nombreux travaux de la littérature proposent des techniques, pour suivre l'évolution de l'état de ces systèmes.
 
 \citet{Zhan10b} utilise les données des occurrences bugs et le temps pour modéliser l'évolution d'un système logiciel avec c\-charts.
@@ -217,31 +221,40 @@ Alors que pour un système large, l'UML devient vite une toile d'araignée et fr
 \label{sec: devOps}
 Les problèmes préalablement cités sur Izy Protect à savoir : code non versionné, ce qui engendre les pertes et écrasement de code, puis l'absence total de test unitaire automatisé, m'ont amenés à :
 \begin{itemize}
-\item Mettre en place un serveur subversion (SVN) pour versionné le code. 
-Le choix de SVN est guidé par le fait de sa simplicité pour la compréhension. 
-De plus, le module de contrôle de version qu'offre Powerbuilder n'est pas trop stable. 
+\item  Mettre en place un serveur  pour versionné le code. 
+Le fait de versionné le code  non seulement permet d'eviter les problèmes de pertes de code mais aussi a longterme me permettrai
+(1) d'avoir une base d'analyse de l'evolution du code de Izy Proctect suplemenetaire et (2) de fournire  un outils de vérification des normmes de developpements sur les changements effectués par les developpeurs.
+ 
+J'ai choisi Subversion( SVN) \footnote{https://subversion.apache.org/} par le fait de sa simplicité pour la compréhension.
+Il faut aussi noté que le module de contrôle de version qu'offre Powerbuilder n'est pas trop stable. 
 Par exemple, parfois, le module considère un code déjà versionné comme un code non versionné.
-De plus, le module de contrôle de version qu'offre Powerbuilder ne supporte pas bien les opérations avancées comme la comparaison de deux versions du code ou bien la résolution de conflit. En complément de Powerbuilder, j'ai amené les développeurs de la CIM à utiliser TortoiseSVN.
-\item Reconstruire l'histoire du code source de Izy Protect depuis 2012 afin de procéder à des analyses de l'évolution du système à partir des changements entre les versions. Les versions d'Izy Protect sont nombreuses. J'en suis actuellement a fin des versions produites en 2014.
-\item Tester PBUnit\footnote{https://sourceforge.net/p/pbunit/wiki/Home/} qui paraît être la libraire qui permet de tester les fonctionnalités des applications Powerbuilder au niveau du code source. 
+De plus, le module de contrôle de version qu'offre Powerbuilder ne supporte pas bien les opérations avancées comme la comparaison de deux versions du code ou bien la résolution de conflit. 
+Tout cela fait de SVN un choix simple pour commencer.
+En complément de Powerbuilder, j'ai amené les développeurs de la CIM à utiliser TortoiseSVN\footnote{https://tortoisesvn.net/}.
+Il faut signaler que pour le success de la mise en place, il a fallut une documentation et une assistance continue.
+
+Dans le but d'avoir une base d'analyse de l'evolution du code de Izy Protect, reconstruire l'histoire du code source de Izy Protect depuis 2012 afin de procéder à des analyses de l'évolution du système à partir des changements entre les versions. 
+Les versions d'Izy Protect sont nombreuses. J'en suis actuellement sur les versions produites en 2015.
+\item Commencer la mise en place des tests automatisé.
+ PBUnit\footnote{https://sourceforge.net/p/pbunit/wiki/Home/} qui paraît être la libraire qui permet de tester les fonctionnalités des applications Powerbuilder au niveau du code source. 
 
 \end{itemize}
 
 \subsection{Analyse des fiches navettes}
 \label{sec:analyseDesFichesNavettes}
-Afin d'évaluer l'état d'Izy Protect, et contrôler l'effet de la ré-ingénierie sur Izy Protect,
-J'ai utilisé la base de donnée des fiches navettes. 
+A travers l'analyse des tickets, j'espère  caracteriser l'état de Izy Protect avec des données factuelles, 
+et suivre  les changements du système dans le temps.
+Ceci permettra  d'evaluer l'impact de l'utilisation des outils d'aide à la rétro-ingénierie que je proposerai durant cette thèse.
+Pour cela, j'ai utilisé la base de donnée des fiches navettes. 
 Après nettoyage, seul les tickets à partir de 2004 sont utilisable. 
 Les données sont non-stationnaires. 
 En me basant sur les résultats de \cite{Raja09}, j'ai utilisé la moyenne glissant avant un pas de 2 mois pour modéliser l'état du système.
 J'ai principalement mesuré les métriques suivantes : l'evolution du temps pour ferme les tickets, l'évolution du temps nécessaire aux développeurs, l'evolution du temps des tests manuel du developpeur, l'évolution de l'estimation du temps de développement par le manager.
-Les résultats sont présentés dans un dashboard qui se met à jours chaque mois.
-La \figref{dashboardFig} montre l'aperçu du dashboard.
-Les développeurs ont confirmé que les résultats de l'analyse reflètent bien leur ressentit de l'état d'Izy Protect. 
-
+Les résultats sont présentés dans un tableau de board qui se met à jours chaque mois.
+La \figref{dashboardFig} montre l'aperçu du tableau de bord.
 \begin{figure}[htbp]
   \begin{center}
-  \includegraphics[width=\textwidth]{./figures/dashboard.png}
+  \includegraphics[width=0.8\textwidth]{./figures/dashboard.png}
   \caption{Dashboard d'analyse de tickets}
   \label{fig:dashboardFig}
 \end{center}
@@ -249,19 +262,48 @@ Les développeurs ont confirmé que les résultats de l'analyse reflètent bien 
 \end{figure}
 
 
-\subsection{Outil d'aide a la rétro-ingénierie logiciel}
+\begin{table}[htbp]
+  \begin{center}
+    \caption{Tickets}
+    \label{tab:proportion}
+    \begin{tabular}{| l | c |c|c|}
+      \hline
+       & correction  & évolution  & Total\\
+      \hline
+      Tickets &15407 & 11973  & 27380\\
+      \hline
+      $\%$ temps & $28\%$ & $78\%$ & 100\% \\
+      \hline 
+    \end{tabular}
+  \end{center}  
+\end{table}
+Comme le montre la Table \ref{tab:proportion}, 28\% du temps passé sont pour des corrections tandis que 78\% sont  pour des evolutions.
+Selon \citet{Pigo96a} la proportion de tickets de corrections doit être entre 20\% et 25\% . 
+Par consequent la proportion de tickets de corrections sur Izy Protect paraît élevée.
+
+J'ai aussi remarqué une augmentation du temps passé par les développeurs pour traiter les evolutions ou les corrections.
+Ceci pourrai être une conséquence de la complexité du code de Izy Proctect, ou bien, une mauvaise compréhension des besoins du client qui fait que le développeur prend du temps a comprendre le travail à 3faire.
+De plus j'ai remarqué les courbes de Izy Protect et de  son \textit{module Prestation} ont relativements les mêmes allures tout comme si tout le travail des développeurs ces dernières années n'est concentré que sur ce module-là.  
+Les données montrent aussi que les développeur passes de moins en moins de temps à tester leur code. Est-ce une demotivation dur à l'état de Izy Protect?
+
+En résumé, les données revèlent les craintes de la société.
+Avec le tableau de bord de la \figref{dashboardFig} je peux continuellement mesurer l'impact de l'utilisation des outils d'aide à la rétro-ingénierie que je proposerai.
+
+%======================================================================================================================
+\subsection{Outil d'aide à la rétro-ingénierie logiciel}
+
 Pour répondre aux exigences détaillées dans la section \secref{retroingenierie}, j'ai développé une suite d'outils d'aide à la rétro-ingénierie.
 Ces outils sont développés au-dessus de la plateforme \cite{Nier05c}.
 En effet, la plate-forme offre un méta-modèle générique et quatre outils principaux pour l'analyse des systèmes logiciels.
 Il s'agit de (1) Famix : un meta-modèle qui permet aux développeurs de représenter un programme, (2) Moose Query: un API pour naviguer dans un modèle Famix,
-(3) Les tags : utilisées pour enrichir le code source avec des informations qui ne peuvent pas être directement déduites du code source et 
+(3) Les tags : utilisés pour enrichir le code source avec des informations qui ne peuvent pas être directement déduites du code source et 
 (4) Roassal : un framework de visualisation intégré dans Moose.
 Dans la suite, je présenterai d'abord l'architecture mise en place pour les outils puis chaque outil.
 
 \subsubsection{Architecture des outils }
 \begin{figure}[htbp]
   \begin{center}
-  \includegraphics[width=0.7\linewidth]{./figures/architecture.pdf}
+  \includegraphics[width=0.7\linewidth]{./figures/architecture.png}
   \caption{Architecture de la suite d'outils}
   \label{fig:applicationArchitecture}
   \end{center}
@@ -362,8 +404,8 @@ Supposons deux entités \textit{e1} et \textit{e2} qui présentent de clones en 
 Quand l'utilisateur clique sur \textit{e1}, les clone de \textit{e1} prennent des couleurs différentes.
 Les clones que \textit{e1} à en commun avec \textit{e2}, dans \textit{e2} prennent les mêmes couleurs que leurs semblables dans \textit{e1}.
 Cela permet de voir plus facilement quelles entités ont de code en commun et de comparer les codes sources dans le navigateur de code que je présenterai dans la suite. 
-\subsubsection{Navigateur de code source}
 
+\subsubsection{Navigateur de code source}
 \begin{figure}[htbp]
   \begin{center}
   \includegraphics[width=0.7\textwidth]{./figures/sourceCodeBrowser.png}
