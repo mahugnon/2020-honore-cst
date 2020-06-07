@@ -374,7 +374,7 @@ Il s'agit des modes (1) \textit{follow}: le navigateur  remplace son entité cou
 
 %=============================================================================================================================
 \subsubsection{Nivigateur de modèle}
-
+\label{sec:navigateurModel}
 \begin{figure}[htbp]
   \begin{center}
   \includegraphics[width=0.6\textwidth]{./figures/modelBrowser.png}
@@ -396,7 +396,7 @@ Par exemple, si l'utilisateur recherche \textit{include : FamixPWBAttribute}, le
 
 %================================================================================================================
 \subsubsection{Navigateur de graphe d'appel}
-
+\label{sec:callGraphBrowser}
 \begin{figure}[htbp]
   \begin{center}
   \includegraphics[width=0.9\textwidth]{./figures/callGraphBrowser.png}
@@ -468,10 +468,17 @@ En particulier dans le cadre d'un fragment dupliqué, le code source de l'entit�
 
 
 
-%================================================================================================================================================
-\subsubsection{Conformité des navigateurs par rapport aux critères des outils de rétro-ingénieurie}
+% %================================================================================================================================================
+ \subsubsection{Conformité des navigateurs par rapport aux critères des outils de rétro-ingénieurie}
+J'ai construit les  navigateurs de façon a ce qu'ils respectent les critères précités dans la \secref{retroingenierie}.
+En effet, l'environnement Moose offre les propriétés de \textbf{scalablilité}, \textbf{d'interopérabilité} \cite{Duca05a} dont herite les outils. 
+ A travers les différents réunions présentations des outils au développeurs, j'ai tenu compte de leurs critiques  afin que les outils non seulement, répondent à leurs besoins mais aussi ,facile d'utilisation et d'apprentissage.
+ Le \textit{Navigateur de graphe d'appel} \secref{callGraphBrowser} répond aux critères  \textbf{d'abstraction} car il permet par exemple d'abstraire l'ensemble des invocations des méthodes d'une classe au niveau de la classe .
+ 
+ \textit{Navigateur de modèle} \secref{navigateurModel} se conforme au critère de sélection car il permet de selection un groupe d'entités respectants une condition bien déterminée.
+ sélection (2) d'abstraction
 
-%===============================================================================================================================
+% %===============================================================================================================================
 
 \section{Futurs travaux}
 \label{sec:roadmap}
