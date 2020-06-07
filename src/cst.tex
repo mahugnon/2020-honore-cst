@@ -287,13 +287,13 @@ Pour cela, j'ai utilisé la base de donnée des fiches navettes.
 Après nettoyage, seul les tickets à partir de 2004 sont utilisable. 
 Les données sont non-stationnaires. 
 En me basant sur les résultats de \cite{Raja09}, j'ai utilisé la moyenne glissant avant un pas de 2 mois pour modéliser l'état du système.
-J'ai principalement mesuré les métriques suivantes : l'évolution du temps pour ferme les tickets, l'évolution du temps nécessaire aux développeurs, l'évolution du temps des tests manuel du développeur, l'évolution de l'estimation du temps de développement par le manager.
-Les résultats sont présentés dans un tableau de board qui se met à jours chaque mois.
+J'ai principalement mesuré les métriques suivantes : l'évolution du temps pour ferme les tickets, l'évolution du temps nécessaire aux développeurs, l'évolution du temps des tests manuels du développeur, l'évolution de l'estimation du temps de développement par le manager.
+Les résultats sont présentés dans un tableau de board qui se met à jour chaque mois.
 La \figref{dashboardFig} montre l'aperçu du tableau de bord.
 \begin{figure}[htbp]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{./figures/dashboard.png}
-  \caption{Dashboard d'analyse de tickets}
+  \caption{Tableau de bord d'analyse de tickets}
   \label{fig:dashboardFig}
 \end{center}
 \vspace{-0.3cm}
@@ -320,15 +320,15 @@ Selon \citet{Pigo96a} la proportion de tickets de corrections doit être entre 2
 Par consequent la proportion de tickets de corrections sur Izy Protect paraît élevée.
 
 J'ai aussi remarqué une augmentation du temps passé par les développeurs pour traiter les évolutions ou les corrections.
-Ceci pourrai être une conséquence de la complexité du code d'Izy Proctect, ou bien, une mauvaise compréhension des besoins du client qui fait que le développeur prend du temps a comprendre le travail à 3faire.
-De plus j'ai remarqué les courbes d'Izy Protect et de  son \textit{module Prestation} ont relativements les mêmes allures tout comme si tout le travail des développeurs ces dernières années n'est concentré que sur ce module-là.  
-Les données montrent aussi que les développeur passes de moins en moins de temps à tester leur code. Est-ce une demotivation dur à l'état d'Izy Protect?
+Ceci pourrait être une conséquence de la complexité du code d'Izy Proctect, ou bien, une mauvaise compréhension des besoins du client qui fait que le développeur prend du temps a comprendre le travail à faire.
+De plus j'ai remarqué les courbes d'Izy Protect et de  son \textit{module Prestation} ont relativement les mêmes allures tout comme si tout le travail des développeurs ces dernières années n'est concentrée que sur ce module-là.  
+Les données montrent aussi que les développeurs passes de moins en moins de temps à tester leur code. Est-ce une demotivation dur à l'état d'Izy Protect?
 
-En résumé, les données revèlent les craintes de la société.
+En résumé, les données révèlent les craintes de la société.
 Avec le tableau de bord de la \figref{dashboardFig} je peux continuellement mesurer l'impact de l'utilisation des outils d'aide à la rétro-ingénierie que je proposerai.
 
 %======================================================================================================================
-\subsection{Outil d'aide à la rétro-ingénierie logiciel}
+\subsection{Outil d'aide à la rétro-ingénierie logicielle}
 
 Pour répondre aux exigences détaillées dans la  \secref{retroingenierie}, j'ai développé une suite d'outils d'aide à la rétro-ingénierie.
 Ces outils sont développés au-dessus de la plateforme Moose \cite{Nier05c}.
@@ -352,7 +352,7 @@ Dans la suite, je présenterai d'abord l'architecture mise en place pour les out
 La \figref{applicationArchitecture} montre l'architecture globale de la suite d'outils.
 L'architecture globale de la suite d'outils est principalement composée d'un \browserMaster et des navigateurs.
 Le tout s'exécute sur une instance d'un modèle Famix. 
-Il a été pensé dans le but de facilité l'expérience du développeur dans les différentes activités de la rétro-ingénierie logiciel.
+Il a été pensé dans le but de faciliter l'expérience du développeur dans les différentes activités de la rétro-ingénierie logiciel.
 Le \browserMaster est responsable de l'échange d'information entre les navigateurs.
 Il est au courant de tous les navigateurs ouverts. 
 Il se charge de notifier tous les navigateurs ouverts en cas d'événement.
@@ -363,13 +363,13 @@ Il peut émettre ou recevoir un événement.
 Tous les navigateurs présentent un bouton qui indique son mode d'émission d'événement, et trois boutons qui indiquent son mode de réception d'événement (\eg \figref{modelBrowser}).
 
 L'émission d'un événement par un navigateur est gouvernée par son mode de propagation.
-En mode de propagation active, le navigateur émet un événement pour publier son entité courante a chaque fois que l'entité change.
+En mode de propagation active, le navigateur émet un événement pour publier son entité courante à chaque fois que l'entité change.
 Dans le contraire, l'entité courante est gardée localement.
 
 Le comportement d'un navigateur a la réception d'un événement dépend du mode de réception de ce dernier.
 Ainsi, chaque navigateur possède trois modes de réception d'événement.  
 Il s'agit des modes (1) \textit{follow}: le navigateur  remplace son entité courante par l'entité reçue via l'événement.
-(2) \textit{highlight}: le navigateur cherche l'entité reçu via l'événement dans son entité courante, s'il la trouve, il la colorie.
+(2) \textit{highlight}: le navigateur cherche l'entité reçue via l'événement dans son entité courante, s'il la trouve, il la colorie.
 (3) \textit{ignore}: le navigateur ne fait rien à la réception de l'événement.
 
 %=============================================================================================================================
@@ -406,12 +406,12 @@ Par exemple, si l'utilisateur recherche \textit{include : FamixPWBAttribute}, le
 \vspace{-0.3cm}
 \end{figure}
 La \figref{graphAppel} donne un aperçu du graphe d'appel avec les options.  
-La fenêtre (1) de ce outil permet principalement de visualiser sous forme d'un graphe les entités qui utilisent l'entité courant du navigateur.
+La fenêtre (1) de cet outil permet principalement de visualiser sous forme d'un graphe les entités qui utilisent l'entité courante du navigateur.
 Les nœuds représentent les entités. Les flèches représentent l'ensemble des dépendances entre deux entités.
 Le sens de la flèche indique le sens des dépendances.
 En effet pour un système comme Izy Protect par exemple, ce graphe peut rapidement devenir illisible. 
 Pour palier à ce problème, l'outil intègre un panel d'option (la fenêtre (2) de la \figref{graphAppel}) qui permet de filtrer le graphe par type d'entité à l'origine des appels.
-Afin de donner plus de contexte aux développeurs, quand il glisse la souris sur une flèche, un popup lui montre toutes les utilisations avec leur code source.
+Afin de donner plus de contexte aux développeurs, quand il glisse la souris sur une flèche, un pop-up lui montre toutes les utilisations avec leur code source.
 
 Le navigateur de graphe d'appel permet aussi aux développeurs de marquer les entités afin de l'ajouter une information qu'on ne peut pas extraire directement du code source.
 Une connaissance qui ressort de l'expérience du développeur sur le système.
@@ -421,19 +421,19 @@ Une connaissance qui ressort de l'expérience du développeur sur le système.
 \begin{figure}[htbp]
   \begin{center}
   \includegraphics[width=0.5\textwidth]{./figures/deadMethodBrowser.png}
-  \caption{navigateurde code mort}
+  \caption{Navigateur de code mort}
   \label{fig:deadMethodBrowser}
 \end{center}
 \vspace{-0.3cm}
 \end{figure}
 La \figref{deadMethodBrowser} montre le navigateur de code mort.
-Ce navigateur présent pour le moment les méthodes de l'entité courante du navigateur qui ne sont jamais appelés dans le système et les que les méthodes qu'elles appels.
+Ce navigateur présent pour le moment les méthodes de l'entité courante du navigateur qui ne sont jamais appelées dans le système et les que les méthodes qu'elles appellent.
 
 \subsubsection{Navigateur de code dupliqué}
 \begin{figure}[htbp]
   \begin{center}
   \includegraphics[width=0.9\textwidth]{./figures/duplicationBrowser.png}
-  \caption{navigateur de code dupliqué}
+  \caption{Navigateur de code dupliqué}
   \label{fig:duplicationBrowser}
 \end{center}
 \vspace{-0.3cm}
@@ -441,23 +441,23 @@ Ce navigateur présent pour le moment les méthodes de l'entité courante du nav
 La \figref{duplicationBrowser} présent le navigateur de code dupliqué. Les carrés externes représentent les entités qui présentent des clones.
 Dans le cas de la \figref{duplicationBrowser}, ces entités sont des  méthodes. 
 Les carrés internes représentent les clones que présente une entité.
-Les clones sont représentés de façon à ce que l'utilisateur puis facilement l'inspecter.
-Il utilise actuellement un algorithme de détection basé sur l'égalité strict des chaînes de caractères \citep{Duca99b}. 
+Les clones sont représentés de façon à ce que l'utilisateur puis facilement l'inspecté.
+Il utilise actuellement un algorithme de détection basé sur l'égalité stricte des chaînes de caractères \citep{Duca99b}. 
 Cet algorithme peut être remplacé par un algorithme plus sophistiqué pour détecter les doublons \citep{Roy07a}. 
 
 Sur la \figref{duplicationBrowser} les entités $uf\_calcul\_sig\_cas\_exp\_pos$ et $uf\_calcul\_sig\_cas$  présentent de clones en commun.
 Quand l'utilisateur clique sur $uf\_calcul\_sig\_cas\_exp\_pos$, les clones de $uf\_calcul\_sig\_cas\_exp\_pos$ prennent des couleurs différentes.
-Les clones que $uf\_calcul\_sig\_cas\_exp\_pos$ à en commun avec $uf\_calcul\_sig\_cas$, dans $uf\_calcul\_sig\_cas$ prennent les mêmes couleurs que leurs semblables dans $uf\_calcul\_sig\_cas\_exp\_pos$.
-Par exemple le carrés bleu claire dans $uf\_calcul\_sig\_cas$ a pris la couleur du carrés bleu claire  dans $uf\_calcul\_sig\_cas\_exp\_pos$
-parceque les deux carrées représentent le même fragement de code.  
-Cela permet de voir plus facilement quelles entités ont de clones en commun et de comparer les codes sources dans le navigateur de code que je présenterai dans la suite. 
+Les clones que $uf\_calcul\_sig\_cas\_exp\_pos$ a en commun avec $uf\_calcul\_sig\_cas$, dans $uf\_calcul\_sig\_cas$ prennent les mêmes couleurs que leurs semblables dans $uf\_calcul\_sig\_cas\_exp\_pos$.
+Par exemple les carrés bleus claires dans $uf\_calcul\_sig\_cas$ a pris la couleur du carrés bleus claires  dans $uf\_calcul\_sig\_cas\_exp\_pos$
+parceque les deux carrées représentent le même fragment de code.  
+Cela permet de voir plus facilement quelles entités ont des clones en commun et de comparer les codes sources dans le navigateur de code que je présenterai dans la suite. 
 
 %==========================================================================================================================
 \subsubsection{Navigateur de code source}
 \begin{figure}[htbp]
   \begin{center}
   \includegraphics[width=0.7\textwidth]{./figures/sourceCodeBrowser.png}
-  \caption{navigateur de code dupliqué}
+  \caption{Navigateur de code dupliqué}
   \label{fig:sourceCodeBrowser}
 \end{center}
 \vspace{-0.3cm}
@@ -469,24 +469,24 @@ En particulier dans le cadre d'un fragment dupliqué, le code source de l'entit�
 
 
 %================================================================================================================================================
-\subsubsection{Conformité des navigateur par rapport aux critères des outils de rétro-ingénieurie}
+\subsubsection{Conformité des navigateurs par rapport aux critères des outils de rétro-ingénieurie}
 
 %===============================================================================================================================
 
 \section{Futurs travaux}
 \label{sec:roadmap}
-Tous les outils présents ci-dessus sont conçus dans le but de nettoyer le code de visualiser l'interaction entre les différentes classes d'Izy Protect.
+Tous les outils présents ci-dessus sont conçus dans le but de nettoyer le code de visualiser les interactions entre les différentes classes d'Izy Protect.
 Par contre les développeurs ne les utilisent pas encore dans leur quotidien.
 Pour vérifier que  les modifications n'introduisent pas d'erreurs, j'envisage de mettre en place les tests automatisés avec PBUnit. 
-Ceci m'amènera à étudier les différentes approches de tests abordés dans la literature afin d'identifier une approche qui s'adapte au contexte d'Izy Protect. 
+Ceci m'amènera à étudier les différentes approches de tests abordés dans la littérature afin d'identifier une approche qui s'adapte au contexte d'Izy Protect. 
 Toutefois je pense que transformer les tests de données énoncés dans la \secref{izyProtect} en tests automatisés sera un point de départ. 
-Je projette aussi d'analyser  les changements entre les versions Izy Protect pour fournir des indicateurs suplemenetaires sur l'évolution du système.
+Je projette aussi d'analyser  les changements entre les versions Izy Protect pour fournir des indicateurs suplémenetaires sur l'évolution du système.
 Sans oublier d'évaluer mes outils. 
 
 L'entreprise prévoit de migrer une partie du système dans une architecture orienté service. 
 Les développeurs ont donc exprimé le besoin d'extraire des logiques métier du code.
-Plusieurs travaux sont présentés dans la literature dans ce sens en notament \cite{Lei05a,Cose12a,Norm12a} qui se basent sur l'analyse statique des interaction des fonctions avec les variables pour extraire les logiques metier d'un systèmes patrimonial. 
-Je souhaite combiner cette méthode avec la méthode proposée \cite{anqu19a} pour proposer un outil d'extraction de logique métier dans les systèmes patrimoniaux.
+Plusieurs travaux sont présentés dans la littérature dans ce sens en notament \cite{Lei05a,Cose12a,Norm12a} qui se basent sur l'analyse statique des interactions des fonctions avec les variables pour extraire les logiques metiers d'un système patrimonial. 
+Je souhaite combiner cette méthode avec la méthode proposée \cite{anqu19a} pour proposer un outil d'extraction des logiques métiers dans les systèmes patrimoniaux.
 
 Je mettrai en place et j'étudierai l'impact du DevOps à la CIM. 
 
@@ -501,7 +501,7 @@ Dans le cadre de cette thèse,
 
 \section{Formations}
 Pour les formations doctorale, je cumule un  total de 41 crédits sur les 40 cédits minimum demandés pour une thèse CIFRE. 
-Voici la liste des formations que j'ai assistées  avec leurs crédits:
+Voici la liste des formations que j'ai assistées  avec leurs crédits.
 \begin{itemize}
 \item Les fondamentaux du management d’équipe Session 1 (Ecole doctorale)  (7)
 \item Gestion de conflit (CIM) 
@@ -512,7 +512,7 @@ Voici la liste des formations que j'ai assistées  avec leurs crédits:
 
 \section{Projet professionnel}
 En ce qui concerne mon projet professionnel, je souhaite continuer dans l'enseignement supérieur : donner des cours et continuer dans la recherche.
-Je pense la reengenierie des système est un axe de recherche ou beaucoup de travaux intéressant sont mener. Néanmoins il reste à faire et je souhaite contribuer a cela.
+Je pense la réingénierie des systèmes logiciels est un axe de recherche ou beaucoup de travaux intéressant sont menés. Néanmoins il reste à faire et je souhaite contribuer à cela.
 Toutefois, je ne me refuse pas l'idée de démarrer une start-up a l'issue de ma thèse ou travailler dans une entreprise.
 
 \footnotesize{
