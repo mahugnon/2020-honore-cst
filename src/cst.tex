@@ -63,7 +63,7 @@
 \lstset{style=mystyle}
 \newcommand{\browserMaster}{\textit{BrowserMaster} \xspace}
 
-\title{CST --Analyse multi-facettes et opérationnelle pour la transformation des systemes d’information}
+\title{CST --Analyse multi-facettes et opérationnelle pour la transformation des systèmes d’information}
 \author{ HOUEKPETODJI Mahugnon Honoré}
 
 \begin{document}
@@ -105,33 +105,34 @@ Les expériences et validation des prototypes se feront dans le contexte de l'ap
 \section{Etat de l'art}
 \label{sec:stateOfTheArt}
 % 1 pages
-Dans cette section, je presenterai Izy Protect et les travaux qui se penchent sur la question de la ré-ingénierie des systèmes d'informations.
+Dans cette section, je presenterai Izy Protect et les travaux qui se penchent sur la question de la ré-ingénierie des systèmes d'information.
 %===========================================================================================================================================================
-\subsection{Présentation de Izy Protect}
+\subsection{Présentation d'Izy Protect}
 \label{sec:izyProtect}
 Izy Protect est un système de plus de 3 MLOC écrit en Powerbuilder et maintenu depuis plus de 20 ans par les développeurs de la CIM. 
-Aujourd'hui Izy Protect est maintenu par une equipe de 18 developpeurs.
+Aujourd'hui Izy Protect est maintenu par une équipe de 18 développeurs.
  Le code source est organisé par bibliothèques Powerbuilder. 
-Izy Protect compte 117 bibliothèques. Les bibliothèques de Izy Protect peuvent être regroupées en des modules métier.
- Par contre cette information ne peux pas être directement déduites du code.
- La plus large à une taille d'environ 300 KLOC.
-Durant toutes ces années, il y a eu beaucoup de changement dans l'équipe de développeurs. 
+Izy Protect compte 117 bibliothèques. Les bibliothèques d'Izy Protect peuvent être regroupées en des modules métier.
+ Par contre cette information ne peut pas être directement déduites du code.
+ La plus large a une taille d'environ 300 KLOC.
+Durant toutes ces années, il y a eu beaucoup de changements dans l'équipe de développeurs. 
 Vu la complexité actuelle du système, les développeurs ont de plus en plus du mal à le maintenir.
 Les anciennes versions du système sont stockées sur un disque dur.
  Pour des raisons internes à la CIM, les versions d'Izy Protect ont été perdues jusqu'en 2010. 
- De plus, les développeurs risquent à tout moment de faire de régression (casser une fonctionnalité existant). 
+ De plus, les développeurs risquent à tout moment de faire de régression (casser une fonctionnalité existante). 
 Izy Protect  n'est pas couvert avec des tests unitaires automatisés.
 Ceci augmente la craint des développeurs pour de petites modifications. 
-Les caractéristiques de Izy Protect montre qu'il est un système de valeur pour l'entreprise. En plus il est développé avec un vieux langage de programmation: PowerBuilder.
+Les caractéristiques d'Izy Protect montrent qu'il est un système qui a une grande valeur pour l'entreprise.
+En plus il est développé avec un vieux langage de programmation: PowerBuilder.
 Ces caractéristiques reflètent la définition d'un système \textbf{patrimonial} selon \citet{Deme02a}.
 De plus, quand un système a plusieurs décennies de vie, la rétro-ingénierie est une activité centrale pour le maintenir \cite{Deme02a}.
 
-Dans l'entreprise, les travaux de maintenances ou de developpements sur Izy Protect sont identifiés par des tickets.
+Dans l'entreprise, les travaux de maintenances ou de développements sur Izy Protect sont identifiés par des tickets.
 Les tickets sont stockés dans la base de données des tickets ou fiches navettes depuis 1998. 
 La base de données des tickets pilote l'ensemble du processus d'évolution du logiciel : attribution du travail aux développeurs, gestion du flux de travail pour répondre à une demande du client, informations de facturation sur chaque tâche.
 Il existe des tickets pour la correction de défauts, la rédaction de documentation, l'ajout de nouvelles fonctionnalités, etc. 
 
-Un ticket comporte entre autres les caractéristiques suivantes :
+Un ticket comporte entre autres les caractéristiques suivantes:
 
 \begin{itemize}
 \item la date de création
@@ -146,6 +147,34 @@ Un ticket comporte entre autres les caractéristiques suivantes :
 \item le(s) bibliothèque(s) impactée(es)
 \end{itemize}
 
+%Etat d'Izy protect et les tests
+Izy Protect  est planifier pour les tests de régressions lorsque  les modifications concernent certaines parties du système présélectionnés par l'entreprise.
+Il faut noté que ces parties sont inchangées.
+Les tests de régressions sont subdivisés en deux parties: les tests de traitements de données et les tests IHMs.
+Les tests de données sont purement manuels. C'est des tests \textit{black box}: on passe des données en entrée, on suit l'exécution et on compare la sortie. 
+Tandis que les tests IHMS sont fait avec l'outil Tosca \footnote{https://www.tricentis.com/products}. 
+Ceci crée une latence dans la ré-exécution des tests et donc pénalise le temps de livraison du produit au client.
+De plus, au cas où les modifications concernent d'autres parties du système, il n'y a aucune assurance qu'il n'a pas de régressions ce qui peut parfois se faire sentir chez le client.
+
+\subsection{Les tests automatisés et le DevOps}
+%Etat d'Izy protect et les tests
+
+%Littérature
+\citet{Dude12a}  ont étudié les avantages et les limitations de l'automatisation des tests.
+Ils ressortent que  les tests automatisés sont  répétables et réutilisables.
+Les tests automatisés assurent aussi une couverture du code et un gain de temps dans l'exécution des tests.
+Mais en contrepartie, les tests automatisés coûtent pour la mise en place(sélection d'outil, achat de l'outil de tests, conception des cas de tests), formations du personnel.
+
+\citet{Yuqi20a} ont présenté une étude qui examine le degré de maturité du processus d'automatisation des tests par rapport aux pratiques d'automatisation des tests adopter dans ces entreprises de logiciels.
+Ils remarquent que la culture du DevOps favorise un haut degré de  maturité du processus d'automatisation des tests.
+
+\citet{Jess20a} ont enquêté sur  pourquoi les entreprises installent la culture du DevOps  dans leurs organisations. 
+Les résultats montrent que les entreprises avaient besoin de: être plus agile et rapide, répondre aux tendances du marché, livrer les produits\/services de meilleure qualité,
+réduire le temps de configuration des environnements,  améliorer la communication entre les équipes, introduire le processus d'automatisation et amener les commerciaux, les développeurs, et les opérateurs à avoir un objectif fonctionel commun. 
+L'installation du DevOps à apporter: une rapidité de livraison, une meilleure qualité des produits et services, automatisation des processus : efficacité, optimisation, productivité
+Améliorer la collaboration et la communication entre les équipes et une meilleure concentration sur les besoins du client.
+
+
 
 \subsection{Analyse de l'évolution de l'état d'un système logiciel patrimonial}
 \label{sec:etatLogiciel}
@@ -156,29 +185,34 @@ Dans ce sens, de nombreux travaux de la littérature proposent des techniques, p
 
 \citet{Zhan10b} utilise les données des occurrences bugs et le temps pour modéliser l'évolution d'un système logiciel avec c\-charts.
 
-\citet{lenar17} propose un système de recommandation d'action au développeur pour un nouveau bug. Le système se base sur l'historique des bugs, le code source ainsi que qu'un algorithme de prédiction. Pour que ça marche, le code source doit être géré dans un système de contrôle de version. Ce qui n'est pas le cas avec Izy Protect.
+\citet{lenar17} propose un système de recommandation d'action au développeur pour un nouveau bug.
+Le système se base sur l'historique des bugs, le code source ainsi que qu'un algorithme de prédiction.
+Pour que ça marche, le code source doit être géré dans un système de contrôle de versionss. 
+Ce qui n'est pas le cas avec Izy Protect.
 
-\citet{port17} utilise les modèles et l'analyse de l'historique des défauts pour évaluer la qualité d'un système et prédire l'effort nécessaire pour améliorer le système. Les métriques mesurées sont : le taux de bugs sur une période de temps, le ratio entre le taux de d'augmentation de la taille du système et le taux de bugs, le temps moyen entre la découverte des bugs, l'effort pour résoudre les bugs, estimation des risques de futurs bugs...
+\citet{port17} utilise les modèles et l'analyse de l'historique des défauts pour évaluer la qualité d'un système et prédire l'effort nécessaire pour améliorer le système. Les métriques mesurées sont : le taux de bugs sur une période de temps, le ratio entre le taux d'augmentation de la taille du système et le taux de bugs, le temps moyen entre la découverte des bugs, l'effort pour résoudre les bugs, estimation des risques de futurs bugs...
 Certain de ces métriques comme : le taux de bugs par période de temps, l'effort pour résoudre les bugs sont intéressants dans le cadre d'Izy Protect. 
 Les autres ne se conforment pas au contexte, car les tickets d'Izy protect ne sont directement liés au code de façon standard.
 Chaque développeur note le numéro de tickets à sa façon dans le code. 
 
 
 \citet{kim07,Bibi06} proposent des modèles de prédiction des défauts avec des algorithmes d'apprentissage en utilisant l'historique des bugs de système. 
-Les algorithmes de prédiction de bugs ne sont pas toujours consistants \cite{bang19}. De plus, ils ne tiennent pas compte des changements qui peuvent être imprévisible dans le code. De plus, Izy Protect est logiciel commercial, multi-utilisateurs, et donc chaque utilisateur a des fonctionnalités ou des changements qui lui est spécifique. 
+Les algorithmes de prédiction de bugs ne sont pas toujours consistants \cite{bang19}. De plus, ils ne tiennent pas compte des changements qui peuvent être imprévisible dans le code. 
+De plus, Izy Protect est logiciel commercial, multi-utilisateur, et donc chaque utilisateur a des fonctionnalités ou des changements qui lui sont spécifiques. 
 
-\citet{naga05} utilise l'historique le nombre de lignes de code changées pour une correction de  bug  ou une nouvelle fonctionnalité pour prédire la densité de bug le code. Pour que ceci soit réalisable, il faut que le code soit préalablement versionné dans un système de contrôle de version.
+\citet{naga05} utilise l'historique le nombre de lignes de code changées pour une correction de  bug  ou une nouvelle fonctionnalité pour prédire la densité de bug le code.
+ Pour que ceci soit réalisable, il faut que le code soit préalablement versionné dans un système de contrôle de versions.
 
-\citet{Raja09} à étudier différents algorithme de modélisation des défauts d'un système à partir des donnée des défauts relevés sur huit projets dont les codes sources sont ouverts. Il en ressort que la moyenne glissée modélise mieux les défauts des systèmes.
+\citet{Raja09} a étudié différents algorithmes de modélisation des défauts d'un système à partir des données des défauts relevés sur huit projets dont les codes sources sont ouverts. Il en ressort que la moyenne glissée modélise mieux les défauts des systèmes.
 
 \subsection{Rétro-ingénierie}
 \label{sec:retroingenierie}
-Dans cette section, je présenterai les travaux reliés à l'outillage pour la rétro-ingénierie que j'ai étudié.
+Dans cette section, je présenterai les travaux reliés à l'outillage pour la rétro-ingénierie que j'ai étudiée.
 \citet{Chik90a} définit la rétro-ingénierie comme \textit{un processus d'analyse d'un système données pour identifier les composants du système et leurs relations, afin de créer des représentations du système sous une autre forme ou à un niveau d'abstraction plus élevé."}.
 
 \citet{Brun14c} affirme que la rétro-ingénierie n'est pas limitée à certains langages courants, mais est universelle. 
 Par exemple, elle peut concerner la base de données \cite{Delp20a} ou l'interface graphique \cite{Verh19a}.
-Il est donc nécessaire de disposer d'une suite d'outils polyvalents et extensibles, indépendants du langage : cette extension peut se faire à plusieurs niveaux - méta-modèle.
+Il est donc nécessaire de disposer d'une suite d'outils polyvalents et extensibles, indépendants du langage : cette extension peut se faire à plusieurs niveaux - métamodèle.
 Mais aussi au niveau des outils eux-mêmes (par exemple en agissant sur le modèle).
 
 C'est dans cette optique que \citet{Kien10a} reconnaissent  le besoin d'outils pour la retro-ingénierie qui fournissent des fonctionnalités permettant d'extraire des informations de bas niveau des systèmes, d'analyser et de générer des connaissances sur les systèmes, et de visualiser ces connaissances afin que les ingénieurs puissent comprendre efficacement les aspects du système qui les intéressent.
@@ -186,70 +220,74 @@ De ce point de vue ils identifient que ces outils doivent être:
 
   (1) scalable: capacité de ces outils a fonctionné pour la rétro-ingénierie de petites aux larges logiciels;
   (2) interoperable: ces outils doivent être capital de Communiquer avec des outils externes;
- (3) personnalisable: les activités de rétro-ingénierie étant variables, les utilisateurs d'outils de retro-ingenierie doivent pouvoir continuellement
+ (3) personnalisable: les activités de rétro-ingénierie étant variables, les utilisateurs d'outils de rétro-ingénierie doivent pouvoir continuellement
  les  adapter pour répondre aux besoins changeants;
  (4) utilisable: facilité d'utilisation;
 (5) adoptable: facilité d'apprentissage.
 
-Ainsi les outils qui seront proposés pour la rétro-ingénierie de Izy Protect doivent respecter ces règles là.
+Ainsi les outils qui seront proposés pour la rétro-ingénierie d'Izy Protect doivent respecter ces règles-là.
 
-\citet{Bell98a} ont proposé un esemble de critères pour comparer les outils de rétro-ingénierie.
-Par contre, ils ne couvrent pas le méta-modèle, l'extension du méta-modèle et des outils de manière exhaustive.
+\citet{Bell98a} ont proposé un ensemble de critères pour comparer les outils de rétro-ingénierie.
+Par contre, ils ne couvrent pas le métamodèle, l'extension du métamodèle et des outils de manière exhaustive.
 
 \citet{Govi18a} ont identifié des critères pour les outils de réingénierie. 
 Parmi ces critères, j'ai retenu ceux qui se rapportent à la rétro-ingénierie.
 Ce sont les critères (1) de sélection (2) d'abstraction.  
-Le critère de sélection exige que l'outil de rétro-ingénierie permette a l'utilisateur de selectionner des éléments  du code source d'un système 
-qui repondent à une requête donnée.
-L'outil doit aussi permettre a l'utilisateur d'abstraire les caractéristiques des entités du code souce à un haut nivau d'abstraction. 
-Par example: déduire de la complexité cyclomatique des classes d'un package, la complexité cyclomatique du package.
+Le critère de sélection exige que l'outil de rétro-ingénierie permette à l'utilisateur de sélectionner des éléments  du code source d'un système 
+qui répondent à une requête donnée.
+L'outil doit aussi permettre à l'utilisateur d'abstraire les caractéristiques des entités du code source à un haut niveau d'abstraction. 
+Par exemple: déduire de la complexité cyclomatique des classes d'un package, la complexité cyclomatique du package.
 
 
 %Modisco
 \citet{Brun14c} a proposé et mis en œuvre le cadre MoDisco.
 MoDisco est divisé en 4 couches, un projet de modélisation de la plateforme Eclipse, l'infrastructure, la technologie et les cas d'utilisation.
 La couche infrastructure contient des outils génériques permettant de naviguer et d'interroger les modèles.
-La couche technologie contient le méta-modèle spécifique (Java, XML, JSP, ...).
+La couche technologie contient le métamodèle spécifique (Java, XML, JSP, ...).
 Et la couche des cas d'utilisation contient l'action spécifique pour un modèle, par exemple le remaniement de code Java.
-MoDisco inclut: un navigateur de modèle, un éditeur pour voir le code des entité d'un modèle, un support graphique pour faire des requêtes sur les éléments du modèle. 
+MoDisco inclut: un navigateur de modèle, un éditeur pour voir le code des entités d'un modèle, un support graphique pour faire des requêtes sur les éléments du modèle. 
 Par contre \citet{Brun14c}, ne propose que l'UML pour visualiser les éléments d'un modèle.
 Alors que pour un système large, l'UML devient vite une toile d'araignée et freine une compréhension rapide du système.
 
+%===============================================================================================================================================================
 \section{Avancées actuelles}
 % 3 pages
 \subsection{Route vers le DevOps}
 \label{sec: devOps}
-Les problèmes préalablement cités sur Izy Protect à savoir : code non versionné, ce qui engendre les pertes et écrasement de code, puis l'absence total de test unitaire automatisé, m'ont amenés à :
-\begin{itemize}
-\item  Mettre en place un serveur  pour versionné le code. 
-Le fait de versionné le code  non seulement permet d'eviter les problèmes de pertes de code mais aussi a longterme me permettrai
-(1) d'avoir une base d'analyse de l'evolution du code de Izy Proctect suplemenetaire et (2) de fournire  un outils de vérification des normmes de developpements sur les changements effectués par les developpeurs.
- 
+
+Izy Protect présente les problèmes cités dans la \secref{izyProtect} en particulier, code non versionné, ce qui engendre les pertes et écrasement de code, puis l'absence totale de tests niveau code source automatisé etc.
+Mon objectif est de construire des outils visant à aider  à la réingénierie de Izy Protect.
+\citet{Deme02a} démontrent  que les tests sont comme une assurance de vie dans le cadre de la réingénierie logicielle. 
+Car il permet d'assurer les activités de réingénieries ne vont pas modifier la logique metier.  
+De plus la réingénierie de Izy Protect se fera de façon incrémentale, en cas d'erreur, il est important de savoir quel changement a cassé le code.
+Pour ce faire, un système de contrôle de versions et les tests automatisés seront d'une grande utilité.
+Le fait de versionné le code  non seulement permet d'éviter les problèmes de pertes de code mais aussi à long terme me permettra aussi 
+d'avoir une base d'analyse de l'évolution du code d'Izy Proctect suplémenetaire et de fournir  un outil de vérification des normes de développements sur les changements effectués par les développeurs.
+
 J'ai choisi Subversion( SVN) \footnote{https://subversion.apache.org/} par le fait de sa simplicité pour la compréhension.
-Il faut aussi noté que le module de contrôle de version qu'offre Powerbuilder n'est pas trop stable. 
+Il faut aussi noté que le module de contrôle de versions qu'offre Powerbuilder n'est pas trop stable. 
 Par exemple, parfois, le module considère un code déjà versionné comme un code non versionné.
-De plus, le module de contrôle de version qu'offre Powerbuilder ne supporte pas bien les opérations avancées comme la comparaison de deux versions du code ou bien la résolution de conflit. 
+De plus, le module de contrôle de versions qu'offre Powerbuilder ne supporte pas bien les opérations avancées comme la comparaison de deux versions du code ou bien la résolution de conflit. 
 Tout cela fait de SVN un choix simple pour commencer.
 En complément de Powerbuilder, j'ai amené les développeurs de la CIM à utiliser TortoiseSVN\footnote{https://tortoisesvn.net/}.
-Il faut signaler que pour le success de la mise en place, il a fallut une documentation et une assistance continue.
+Il faut signaler que pour le success de la mise en place, il a fallu une documentation et une assistance continue.
 
-Dans le but d'avoir une base d'analyse de l'evolution du code de Izy Protect, reconstruire l'histoire du code source de Izy Protect depuis 2012 afin de procéder à des analyses de l'évolution du système à partir des changements entre les versions. 
+Dans le but d'avoir une base d'analyse de l'évolution du code d'Izy Protect, reconstruire l'histoire du code source d'Izy Protect depuis 2012 afin de procéder à des analyses de l'évolution du système à partir des changements entre les versions. 
 Les versions d'Izy Protect sont nombreuses. J'en suis actuellement sur les versions produites en 2015.
-\item Commencer la mise en place des tests automatisé.
- PBUnit\footnote{https://sourceforge.net/p/pbunit/wiki/Home/} qui paraît être la libraire qui permet de tester les fonctionnalités des applications Powerbuilder au niveau du code source. 
 
-\end{itemize}
+En ce qui concerne les tests automatisés, j'ai testé PBUnit\footnote{https://sourceforge.net/p/pbunit/wiki/Home/}  paraît être la libraire qui permet de tester les fonctionnalités des applications Powerbuilder au niveau du code source. 
+
 
 \subsection{Analyse des fiches navettes}
 \label{sec:analyseDesFichesNavettes}
-A travers l'analyse des tickets, j'espère  caracteriser l'état de Izy Protect avec des données factuelles, 
+A travers l'analyse des tickets, j'espère  caracteriser l'état d'Izy Protect avec des données factuelles, 
 et suivre  les changements du système dans le temps.
 Ceci permettra  d'evaluer l'impact de l'utilisation des outils d'aide à la rétro-ingénierie que je proposerai durant cette thèse.
 Pour cela, j'ai utilisé la base de donnée des fiches navettes. 
 Après nettoyage, seul les tickets à partir de 2004 sont utilisable. 
 Les données sont non-stationnaires. 
 En me basant sur les résultats de \cite{Raja09}, j'ai utilisé la moyenne glissant avant un pas de 2 mois pour modéliser l'état du système.
-J'ai principalement mesuré les métriques suivantes : l'evolution du temps pour ferme les tickets, l'évolution du temps nécessaire aux développeurs, l'evolution du temps des tests manuel du developpeur, l'évolution de l'estimation du temps de développement par le manager.
+J'ai principalement mesuré les métriques suivantes : l'évolution du temps pour ferme les tickets, l'évolution du temps nécessaire aux développeurs, l'évolution du temps des tests manuel du développeur, l'évolution de l'estimation du temps de développement par le manager.
 Les résultats sont présentés dans un tableau de board qui se met à jours chaque mois.
 La \figref{dashboardFig} montre l'aperçu du tableau de bord.
 \begin{figure}[htbp]
@@ -277,14 +315,14 @@ La \figref{dashboardFig} montre l'aperçu du tableau de bord.
     \end{tabular}
   \end{center}  
 \end{table}
-Comme le montre la Table \ref{tab:proportion}, 28\% du temps passé sont pour des corrections tandis que 78\% sont  pour des evolutions.
+Comme le montre la Table \ref{tab:proportion}, 28\% du temps passé sont pour des corrections tandis que 78\% sont  pour des évolutions.
 Selon \citet{Pigo96a} la proportion de tickets de corrections doit être entre 20\% et 25\% . 
 Par consequent la proportion de tickets de corrections sur Izy Protect paraît élevée.
 
-J'ai aussi remarqué une augmentation du temps passé par les développeurs pour traiter les evolutions ou les corrections.
-Ceci pourrai être une conséquence de la complexité du code de Izy Proctect, ou bien, une mauvaise compréhension des besoins du client qui fait que le développeur prend du temps a comprendre le travail à 3faire.
-De plus j'ai remarqué les courbes de Izy Protect et de  son \textit{module Prestation} ont relativements les mêmes allures tout comme si tout le travail des développeurs ces dernières années n'est concentré que sur ce module-là.  
-Les données montrent aussi que les développeur passes de moins en moins de temps à tester leur code. Est-ce une demotivation dur à l'état de Izy Protect?
+J'ai aussi remarqué une augmentation du temps passé par les développeurs pour traiter les évolutions ou les corrections.
+Ceci pourrai être une conséquence de la complexité du code d'Izy Proctect, ou bien, une mauvaise compréhension des besoins du client qui fait que le développeur prend du temps a comprendre le travail à 3faire.
+De plus j'ai remarqué les courbes d'Izy Protect et de  son \textit{module Prestation} ont relativements les mêmes allures tout comme si tout le travail des développeurs ces dernières années n'est concentré que sur ce module-là.  
+Les données montrent aussi que les développeur passes de moins en moins de temps à tester leur code. Est-ce une demotivation dur à l'état d'Izy Protect?
 
 En résumé, les données revèlent les craintes de la société.
 Avec le tableau de bord de la \figref{dashboardFig} je peux continuellement mesurer l'impact de l'utilisation des outils d'aide à la rétro-ingénierie que je proposerai.
@@ -292,18 +330,19 @@ Avec le tableau de bord de la \figref{dashboardFig} je peux continuellement mesu
 %======================================================================================================================
 \subsection{Outil d'aide à la rétro-ingénierie logiciel}
 
-Pour répondre aux exigences détaillées dans la section \secref{retroingenierie}, j'ai développé une suite d'outils d'aide à la rétro-ingénierie.
-Ces outils sont développés au-dessus de la plateforme \cite{Nier05c}.
-En effet, la plate-forme offre un méta-modèle générique et quatre outils principaux pour l'analyse des systèmes logiciels.
+Pour répondre aux exigences détaillées dans la  \secref{retroingenierie}, j'ai développé une suite d'outils d'aide à la rétro-ingénierie.
+Ces outils sont développés au-dessus de la plateforme Moose \cite{Nier05c}.
+En effet, la plate-forme offre un métamodèle générique et quatre outils principaux pour l'analyse des systèmes logiciels.
 Il s'agit de (1) Famix : un meta-modèle qui permet aux développeurs de représenter un programme, (2) Moose Query: un API pour naviguer dans un modèle Famix,
 (3) Les tags : utilisés pour enrichir le code source avec des informations qui ne peuvent pas être directement déduites du code source et 
 (4) Roassal : un framework de visualisation intégré dans Moose.
+
 Dans la suite, je présenterai d'abord l'architecture mise en place pour les outils puis chaque outil.
 
 \subsubsection{Architecture des outils }
 \begin{figure}[htbp]
   \begin{center}
-  \includegraphics[width=0.7\linewidth]{./figures/architecture.png}
+  \includegraphics[width=0.8\linewidth]{./figures/architecture.png}
   \caption{Architecture de la suite d'outils}
   \label{fig:applicationArchitecture}
   \end{center}
@@ -315,25 +354,27 @@ L'architecture globale de la suite d'outils est principalement composée d'un \b
 Le tout s'exécute sur une instance d'un modèle Famix. 
 Il a été pensé dans le but de facilité l'expérience du développeur dans les différentes activités de la rétro-ingénierie logiciel.
 Le \browserMaster est responsable de l'échange d'information entre les navigateurs.
-Il est au courant de tous les navigateurs ouvert. 
+Il est au courant de tous les navigateurs ouverts. 
 Il se charge de notifier tous les navigateurs ouverts en cas d'événement.
 
-Chaque navigateur fonction sur une entité du modèle  local a lui.
+Chaque navigateur fonctionne sur une entité du modèle  local à lui.
 Cette entité peut être une seule entité ou un groupe d'entité.
-Il navigateur est peut émettre ou recevoir un événement. 
-\paragraph{émission d'événement:} l'émission d'un événement par un navigateur est gouverner par son mode de propagation.
-En mode de propagation active, le navigateur émet un événement pour publier son entité courant a chaque fois que l'entité change.
-Dans le contraire, l'entité courant est gardée localement.
+Il peut émettre ou recevoir un événement.
+Tous les navigateurs présentent un bouton qui indique son mode d'émission d'événement, et trois boutons qui indiquent son mode de réception d'événement (\eg \figref{modelBrowser}).
 
-\paragraph{réception d'événement : } le comportement d'un navigateur a la réception d'un événement dépend du mode de réception de ce dernier.
-Ainsi, chaque navigateur possède trois modes de réception d'événement. 
-Il s'agit des modes (1) \textit{follow}: le navigateur change remplace son entité courant par l'entité reçu via l'événement.
-(2) \textit{highlight}: le navigateur cherche l'entité reçu via l'événement dans son entité courant, s'il le trouve, il le colorie.
+L'émission d'un événement par un navigateur est gouvernée par son mode de propagation.
+En mode de propagation active, le navigateur émet un événement pour publier son entité courante a chaque fois que l'entité change.
+Dans le contraire, l'entité courante est gardée localement.
+
+Le comportement d'un navigateur a la réception d'un événement dépend du mode de réception de ce dernier.
+Ainsi, chaque navigateur possède trois modes de réception d'événement.  
+Il s'agit des modes (1) \textit{follow}: le navigateur  remplace son entité courante par l'entité reçue via l'événement.
+(2) \textit{highlight}: le navigateur cherche l'entité reçu via l'événement dans son entité courante, s'il la trouve, il la colorie.
 (3) \textit{ignore}: le navigateur ne fait rien à la réception de l'événement.
 
-Tous les navigateurs présentent un bouton qui indique sont mode d'émission d'événement, et trois boutons qui indiquent sont mode de réception d'événement.
+%=============================================================================================================================
+\subsubsection{Nivigateur de modèle}
 
-\subsubsection{Nivagateur de modèle}
 \begin{figure}[htbp]
   \begin{center}
   \includegraphics[width=0.6\textwidth]{./figures/modelBrowser.png}
@@ -342,9 +383,9 @@ Tous les navigateurs présentent un bouton qui indique sont mode d'émission d'�
 \end{center}
 \vspace{-0.3cm}
 \end{figure}
-Le navigateur de modèle comme la montre la \figref{modelBrowser} outre la partie commune a touts les navigateurs, comporte deux boutons (\textit{All PWBObjects}, \textit{Scoped View}), un contenu et un champ de recherche.
+Le navigateur de modèle comme la montre la \figref{modelBrowser} outre la partie commune à tous les navigateurs, comporte deux boutons (\textit{All PWBObjects}, \textit{Scoped View}), un contenu et un champ de recherche.
 
-Le contenu navigateur présente par défaut la liste des entités que contient l'entité courant du navigateur. 
+Le contenu navigateur présente par défaut la liste des entités que contient l'entité courante du navigateur. 
 L'utilisateur peut décider de se concentrer sur un certain nombre d'entités. Dans ce cas, il les sélectionne et il active le bouton \textit{Scoped View}.
 Pour le moment le navigateur de modèle est juste une liste. Mais il est prévu de l'étendre.
 
@@ -353,7 +394,9 @@ Cette entité est pour la plupart du temps un groupe d'entité Famix.
 Cette requête peut être lexicale, sous forme de simple chaîne pour une recherche lexicale, ou structurelle.
 Par exemple, si l'utilisateur recherche \textit{include : FamixPWBAttribute}, le résultat sera toutes les entités contenant des FamixPWBAttribute (attributs Powerbuilder).
 
-\subsubsection{navigateur de graph d'appel}
+%================================================================================================================
+\subsubsection{Navigateur de graphe d'appel}
+
 \begin{figure}[htbp]
   \begin{center}
   \includegraphics[width=0.9\textwidth]{./figures/callGraphBrowser.png}
@@ -363,16 +406,18 @@ Par exemple, si l'utilisateur recherche \textit{include : FamixPWBAttribute}, le
 \vspace{-0.3cm}
 \end{figure}
 La \figref{graphAppel} donne un aperçu du graphe d'appel avec les options.  
- La fenêtre (1) de ce outil permet principalement de visualiser sous forme d'un graphe les entités qui utilisent l'entité courant du navigateur.
-Les nœuds représentent les entités. Les flèches représentent l'ensemble des utilisations entre deux entités.
-Le sens de la flèche indique le sens des utilisations.
-En effet pour un système large comme Izy Protect par exemple, ce graphe peut rapidement devenir illisible. 
-Pour palier à ce problème, l'outil intègre un panel d'option( la fenêtre (2) de la \figref{graphAppel}) qui permet de filtrer le graphe par type d'entité a l'origine des appels.
+La fenêtre (1) de ce outil permet principalement de visualiser sous forme d'un graphe les entités qui utilisent l'entité courant du navigateur.
+Les nœuds représentent les entités. Les flèches représentent l'ensemble des dépendances entre deux entités.
+Le sens de la flèche indique le sens des dépendances.
+En effet pour un système comme Izy Protect par exemple, ce graphe peut rapidement devenir illisible. 
+Pour palier à ce problème, l'outil intègre un panel d'option (la fenêtre (2) de la \figref{graphAppel}) qui permet de filtrer le graphe par type d'entité à l'origine des appels.
 Afin de donner plus de contexte aux développeurs, quand il glisse la souris sur une flèche, un popup lui montre toutes les utilisations avec leur code source.
 
-Le navigateur de graphe d'appel permet aussi aux développeurs de marquer les entités afin de lui ajouter une information qu'on ne peut pas extraire directement du code source.
+Le navigateur de graphe d'appel permet aussi aux développeurs de marquer les entités afin de l'ajouter une information qu'on ne peut pas extraire directement du code source.
 Une connaissance qui ressort de l'expérience du développeur sur le système.
-\subsubsection{navigateur de Code mort}
+
+\subsubsection{Navigateur de Code mort}
+
 \begin{figure}[htbp]
   \begin{center}
   \includegraphics[width=0.5\textwidth]{./figures/deadMethodBrowser.png}
@@ -382,9 +427,9 @@ Une connaissance qui ressort de l'expérience du développeur sur le système.
 \vspace{-0.3cm}
 \end{figure}
 La \figref{deadMethodBrowser} montre le navigateur de code mort.
-Ce navigateur pressent pour le moment les méthodes de l'entité courant du navigateur qui le sont jamais appelé dans le système et les que ces méthodes appels.
+Ce navigateur présent pour le moment les méthodes de l'entité courante du navigateur qui ne sont jamais appelés dans le système et les que les méthodes qu'elles appels.
 
-\subsubsection{navigateur de code dupliqué}
+\subsubsection{Navigateur de code dupliqué}
 \begin{figure}[htbp]
   \begin{center}
   \includegraphics[width=0.9\textwidth]{./figures/duplicationBrowser.png}
@@ -393,18 +438,21 @@ Ce navigateur pressent pour le moment les méthodes de l'entité courant du navi
 \end{center}
 \vspace{-0.3cm}
 \end{figure}
-La \figref{duplicationBrowser} présent le navigateur de code dupliqué. Les carrés externes représentent les entités qui présentent de clone.
-Dans le cas de la \figref{duplicationBrowser} c'est des méthodes. 
+La \figref{duplicationBrowser} présent le navigateur de code dupliqué. Les carrés externes représentent les entités qui présentent des clones.
+Dans le cas de la \figref{duplicationBrowser}, ces entités sont des  méthodes. 
 Les carrés internes représentent les clones que présente une entité.
-Les clones sont représentés de façon de ce que l'utilisateur puis facilement l'inspecter.
+Les clones sont représentés de façon à ce que l'utilisateur puis facilement l'inspecter.
 Il utilise actuellement un algorithme de détection basé sur l'égalité strict des chaînes de caractères \citep{Duca99b}. 
 Cet algorithme peut être remplacé par un algorithme plus sophistiqué pour détecter les doublons \citep{Roy07a}. 
 
-Supposons deux entités \textit{e1} et \textit{e2} qui présentent de clones en commun.
-Quand l'utilisateur clique sur \textit{e1}, les clone de \textit{e1} prennent des couleurs différentes.
-Les clones que \textit{e1} à en commun avec \textit{e2}, dans \textit{e2} prennent les mêmes couleurs que leurs semblables dans \textit{e1}.
-Cela permet de voir plus facilement quelles entités ont de code en commun et de comparer les codes sources dans le navigateur de code que je présenterai dans la suite. 
+Sur la \figref{duplicationBrowser} les entités $uf\_calcul\_sig\_cas\_exp\_pos$ et $uf\_calcul\_sig\_cas$  présentent de clones en commun.
+Quand l'utilisateur clique sur $uf\_calcul\_sig\_cas\_exp\_pos$, les clones de $uf\_calcul\_sig\_cas\_exp\_pos$ prennent des couleurs différentes.
+Les clones que $uf\_calcul\_sig\_cas\_exp\_pos$ à en commun avec $uf\_calcul\_sig\_cas$, dans $uf\_calcul\_sig\_cas$ prennent les mêmes couleurs que leurs semblables dans $uf\_calcul\_sig\_cas\_exp\_pos$.
+Par exemple le carrés bleu claire dans $uf\_calcul\_sig\_cas$ a pris la couleur du carrés bleu claire  dans $uf\_calcul\_sig\_cas\_exp\_pos$
+parceque les deux carrées représentent le même fragement de code.  
+Cela permet de voir plus facilement quelles entités ont de clones en commun et de comparer les codes sources dans le navigateur de code que je présenterai dans la suite. 
 
+%==========================================================================================================================
 \subsubsection{Navigateur de code source}
 \begin{figure}[htbp]
   \begin{center}
@@ -415,39 +463,51 @@ Cela permet de voir plus facilement quelles entités ont de code en commun et de
 \vspace{-0.3cm}
 \end{figure}
 La \figref{sourceCodeBrowser} présente le navigateur de code source. 
-Ce navigateur est une fenêtre qui affiche le code source de l'entité courant.
+Ce navigateur est une fenêtre qui affiche le code source de l'entité courante.
 En particulier dans le cadre d'un fragment dupliqué, le code source de l'entité qui contient ce fragment est affiché normalement sauf que la partie du code qui représente le fragment dupliqué est en rouge comme sur la \figref{sourceCodeBrowser}
 
-\section{Future travaux}
-\label{sec:roadmap}
-Toutes les outils présentes ci-dessus sont conçus dans le but de nettoyer le code de visualiser l'interaction entre les différentes classe d'Izy Protect.
-Par contre les développeurs ne l'ont pas encore utilisé dans leur quotidien.
-Dans ce sens, j'identifie la validation de ces outils dans la suite mes travaux.
 
-D'un autre côté, l'entreprise prévoit de migrer une partie du système dans une architecture orienté service. 
+
+%================================================================================================================================================
+\subsubsection{Conformité des navigateur par rapport aux critères des outils de rétro-ingénieurie}
+
+%===============================================================================================================================
+
+\section{Futurs travaux}
+\label{sec:roadmap}
+Tous les outils présents ci-dessus sont conçus dans le but de nettoyer le code de visualiser l'interaction entre les différentes classes d'Izy Protect.
+Par contre les développeurs ne les utilisent pas encore dans leur quotidien.
+Pour vérifier que  les modifications n'introduisent pas d'erreurs, j'envisage de mettre en place les tests automatisés avec PBUnit. 
+Ceci m'amènera à étudier les différentes approches de tests abordés dans la literature afin d'identifier une approche qui s'adapte au contexte d'Izy Protect. 
+Toutefois je pense que transformer les tests de données énoncés dans la \secref{izyProtect} en tests automatisés sera un point de départ. 
+Je projette aussi d'analyser  les changements entre les versions Izy Protect pour fournir des indicateurs suplemenetaires sur l'évolution du système.
+Sans oublier d'évaluer mes outils. 
+
+L'entreprise prévoit de migrer une partie du système dans une architecture orienté service. 
 Les développeurs ont donc exprimé le besoin d'extraire des logiques métier du code.
-Plusieurs travaux sont présentés dans la literature dans ce sens en particulier \cite{Lei05a} qui se base sur l'analyse statique des interaction des fonctions avec les variables pour extraire les logiques metier d'un systemes patrimonial. 
+Plusieurs travaux sont présentés dans la literature dans ce sens en notament \cite{Lei05a,Cose12a,Norm12a} qui se basent sur l'analyse statique des interaction des fonctions avec les variables pour extraire les logiques metier d'un systèmes patrimonial. 
 Je souhaite combiner cette méthode avec la méthode proposée \cite{anqu19a} pour proposer un outil d'extraction de logique métier dans les systèmes patrimoniaux.
 
 Je mettrai en place et j'étudierai l'impact du DevOps à la CIM. 
 
 \section{Publications}
+Dans le cadre de cette thèse,
+\begin{itemize}
+  \item l'article: \textit{Improving practices in a medium Franch company : First step} (\citet{Houe20a}) a été soumis
+\item l'article: \textit{Towards a Versatile Reverse Engineering Tool Suite}  ( \citet{Houe20b}) a été accepté en version court
+\end{itemize}
 
-Les articles soumis dans le cadre de cette thèse sont :
-\begin{enumerate}
-\item Improving practices in a medium Franch company : First step (\citet{Houe20a})
-\item Towards a Versatile Reverse Engineering Tool Suite ( \citet{Houe20b})
 
-\end{enumerate}
 
 \section{Formations}
-Voici la liste des formations que j'ai assistées :
+Pour les formations doctorale, je cumule un  total de 41 crédits sur les 40 cédits minimum demandés pour une thèse CIFRE. 
+Voici la liste des formations que j'ai assistées  avec leurs crédits:
 \begin{itemize}
-\item Les fondamentaux du management d’équipe Session 1 (Ecole doctorale)
+\item Les fondamentaux du management d’équipe Session 1 (Ecole doctorale)  (7)
 \item Gestion de conflit (CIM) 
-\item Formation Propriété intellectuelle au service des doctorants tronc commun (Ecole doctorale)
-\item Intelligence économique et dynamique de l'innovation (Ecole doctorale)
-\item Communiquer en Anglais - Niveau confirmé - Stage intensif (Ecole doctorale)
+\item Formation Propriété intellectuelle au service des doctorants tronc commun (Ecole doctorale) (10)
+\item Intelligence économique et dynamique de l'innovation (Ecole doctorale) (10)
+\item Communiquer en Anglais - Niveau confirmé - Stage intensif (Ecole doctorale) (14)
 \end{itemize}
 
 \section{Projet professionnel}
