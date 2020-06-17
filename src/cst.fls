@@ -332,29 +332,19 @@ INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\vf\adobe\t
 INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmri8r.tfm
 INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\vf\adobe\times\ptmb8t.vf
 INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmb8r.tfm
-INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8t.tfm
-INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8t.tfm
-INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\vf\adobe\times\ptmr8t.vf
-INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8r.tfm
-INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\vf\adobe\times\ptmr8t.vf
-INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8r.tfm
+INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmrc8t.tfm
 INPUT figures\dashboard.png
 INPUT .\figures\dashboard.png
 INPUT .\figures\dashboard.png
 INPUT .\figures\dashboard.png
 INPUT .\figures\dashboard.png
-INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmrc8t.tfm
 INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\vf\adobe\times\ptmrc8t.vf
+INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8r.tfm
 INPUT figures\architecture.png
 INPUT .\figures\architecture.png
 INPUT .\figures\architecture.png
 INPUT .\figures\architecture.png
 INPUT .\figures\architecture.png
-INPUT figures\modelBrowser.png
-INPUT .\figures\modelBrowser.png
-INPUT .\figures\modelBrowser.png
-INPUT .\figures\modelBrowser.png
-INPUT .\figures\modelBrowser.png
 INPUT figures\callGraphBrowser.png
 INPUT .\figures\callGraphBrowser.png
 INPUT .\figures\callGraphBrowser.png
@@ -371,14 +361,15 @@ INPUT .\figures\duplicationBrowser.png
 INPUT .\figures\duplicationBrowser.png
 INPUT .\figures\duplicationBrowser.png
 INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8t.tfm
+INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8t.tfm
 INPUT figures\sourceCodeBrowser.png
 INPUT .\figures\sourceCodeBrowser.png
 INPUT .\figures\sourceCodeBrowser.png
 INPUT .\figures\sourceCodeBrowser.png
 INPUT .\figures\sourceCodeBrowser.png
+INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8t.tfm
 INPUT c:\Users\h.houekpetodji\Desktop\utility\2020-honore-cst\src\cst.bbl
 INPUT c:\Users\h.houekpetodji\Desktop\utility\2020-honore-cst\src\cst.bbl
-INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmri8t.tfm
 INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8t.tfm
 INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1phv.fd
 INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1phv.fd
@@ -391,10 +382,12 @@ INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public
 INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
 INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\h.houekpetodji\AppData\Local\MiKTeX\2.9\fonts\tfm\public\stmaryrd\stmary9.tfm
-INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\vf\adobe\times\ptmri8t.vf
-INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmri8r.tfm
+INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmri8t.tfm
+INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\vf\adobe\times\ptmr8t.vf
 INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\vf\adobe\helvetic\phvr8t.vf
 INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\helvetic\phvr8r.tfm
+INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\vf\adobe\times\ptmri8t.vf
+INPUT C:\Users\h.houekpetodji\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmri8r.tfm
 INPUT c:\Users\h.houekpetodji\Desktop\utility\2020-honore-cst\src\cst.aux
 INPUT c:\Users\h.houekpetodji\Desktop\utility\2020-honore-cst\src\cst.out
 INPUT c:\Users\h.houekpetodji\Desktop\utility\2020-honore-cst\src\cst.out
